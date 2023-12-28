@@ -1,6 +1,5 @@
 ﻿using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,30 +8,62 @@ using System.Threading.Tasks;
 
 namespace BL
 {
-    public class Autor
+    public class TipoMedio
     {
-        public static ML.Result AutorAdd(ML.Autor autor)
+        public static ML.Result TipoMedioAdd(ML.TipoMedio tipoMedio)
         {
             ML.Result result = new ML.Result();
             try
             {
                 using (DL.AoeganahuacBiblioTestContext context = new DL.AoeganahuacBiblioTestContext())
                 {
-                    SqlParameter nombre = new SqlParameter("@Nombre", autor.Nombre);
-                    SqlParameter informacionAdicional = new SqlParameter("@InformacionAdicional", autor.InformacionAdicional);
-                    SqlParameter imagen = new SqlParameter("@Imagen", autor.Imagen);
-                    string store = "AutorAdd @Nombre , @InformacionAdicional , @Imagen";
-                    var query = context.Database.ExecuteSqlRaw(store, nombre, informacionAdicional, imagen);
+                    SqlParameter nombre = new SqlParameter("@Nombre", tipoMedio.Nombre);
+                    SqlParameter descripcion = new SqlParameter("@Descripcion", tipoMedio.Descripcion);
+                    string store = "TipoMedioAdd @Nombre , @Descripcion";
+                    var query = context.Database.ExecuteSqlRaw(store, nombre, descripcion);
+
+                    if (query > 0)
+                    {
+                        result.Correct = true;
+                        result.Message = "Se ha ingresado el tipo de medio de manera correcta";
+                    }
+                    else
+                    {
+                        result.Correct = false;
+                        result.Message = "No se pudo ingresar el tipo de medio";
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                result.Correct = false;
+                result.Message = ex.Message;
+                result.Ex = ex;
+            }
+            return result;
+        }
+        public static ML.Result TipoMedioUpdate(ML.TipoMedio tipoMedio)
+        {
+            ML.Result result = new ML.Result();
+            try
+            {
+                using (DL.AoeganahuacBiblioTestContext context = new DL.AoeganahuacBiblioTestContext())
+                {
+                    SqlParameter idTipoMedio = new SqlParameter("@IdTipoMedio", tipoMedio.IdTipoMedio);
+                    SqlParameter nombre = new SqlParameter("@Nombre", tipoMedio.Nombre);
+                    SqlParameter descripcion = new SqlParameter("@Descripcion", tipoMedio.Descripcion);
+                    string store = "TipoMedioUpdate @IdGenero , @Nombre , @Descripcion";
+                    var query = context.Database.ExecuteSqlRaw(store, idTipoMedio, nombre, descripcion);
                     //var query = context.Database.ExecuteSqlInterpolated($"AutorAdd {nombre}, {informacionAdicional}, {imagen}");
                     if (query > 0)
                     {
                         result.Correct = true;
-                        result.Message = "Se ha ingresado al autor de manera correcta";
+                        result.Message = "Se ha actualizado el tipo de medio de manera correcta";
                     }
                     else
                     {
                         result.Correct = false;
-                        result.Message = "No se pudo ingresar al autor";
+                        result.Message = "No se pudo actualizar el tipo de medio";
                     }
                 }
             }
@@ -44,29 +75,25 @@ namespace BL
             }
             return result;
         }
-        public static ML.Result AutorUpdate(ML.Autor autor)
+        public static ML.Result TipoMedioDelete(int IdTipoMedio)
         {
             ML.Result result = new ML.Result();
             try
             {
                 using (DL.AoeganahuacBiblioTestContext context = new DL.AoeganahuacBiblioTestContext())
                 {
-                    SqlParameter idAutor = new SqlParameter("@IdAutor", autor.IdAutor);
-                    SqlParameter nombre = new SqlParameter("@Nombre", autor.Nombre);
-                    SqlParameter informacionAdicional = new SqlParameter("@InformacionAdicional", autor.InformacionAdicional);
-                    SqlParameter imagen = new SqlParameter("@Imagen", autor.Imagen);
-                    string store = "AutorUpdate @IdAutor , @Nombre , @InformacionAdicional , @Imagen";
-                    var query = context.Database.ExecuteSqlRaw(store, idAutor, nombre, informacionAdicional, imagen);
-                    //var query = context.Database.ExecuteSqlInterpolated($"AutorAdd {nombre}, {informacionAdicional}, {imagen}");
+                    SqlParameter idTipoMedio = new SqlParameter("@IdTipoMedio", IdTipoMedio); 
+                    var query = context.Database.ExecuteSqlInterpolated($"TipoMedioDelete {idTipoMedio}");
+
                     if (query > 0)
                     {
                         result.Correct = true;
-                        result.Message = "Se ha actualizado al autor de manera correcta";
+                        result.Message = "Se ha eliminado el tipo de medio de manera correcta";
                     }
                     else
                     {
                         result.Correct = false;
-                        result.Message = "No se pudo actualizar al autor";
+                        result.Message = "No se pudo eliminar el tipo de medio";
                     }
                 }
             }
@@ -78,51 +105,19 @@ namespace BL
             }
             return result;
         }
-        public static ML.Result AutorDelete(int IdAutor)
+        public static ML.Result TipoMedioGetAll()
         {
             ML.Result result = new ML.Result();
             try
             {
                 using (DL.AoeganahuacBiblioTestContext context = new DL.AoeganahuacBiblioTestContext())
                 {
-                    SqlParameter idAutor = new SqlParameter("@IdAutor", IdAutor);
-                    string store = "AutorDelete @IdAutor";
-                    //var query = context.Database.ExecuteSqlRaw(store, idAutor);
-                    var query = context.Database.ExecuteSqlInterpolated($"AutorDelete {idAutor}");
-                    if (query > 0)
-                    {
-                        result.Correct = true;
-                        result.Message = "Se ha eliminado al autor de manera correcta";
-                    }
-                    else
-                    {
-                        result.Correct = false;
-                        result.Message = "No se pudo eliminar al autor";
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                result.Correct = false;
-                result.Message = ex.Message;
-                result.Ex = ex;
-            }
-            return result;
-        }
-        public static ML.Result AutorGetAll()
-        {
-            ML.Result result = new ML.Result();
-            try
-            {
-                using (DL.AoeganahuacBiblioTestContext context = new DL.AoeganahuacBiblioTestContext())
-                {
-                    var query = (from autoresLINQ in context.Autors
+                    var query = (from tipoMediosLINQ in context.TipoMedios
                                  select new
                                  {
-                                     IdAutor = autoresLINQ.IdAutor,
-                                     Nombre = autoresLINQ.Nombre,
-                                     InformacionAdicional = autoresLINQ.InformacionAdicional,
-                                     Imagen = autoresLINQ.Imagen
+                                     IdTipoMedio = tipoMediosLINQ.IdTipoMedio,
+                                     Nombre = tipoMediosLINQ.Nombre,
+                                     Descripcion = tipoMediosLINQ.Descripcion
                                  }).ToList();
                     if (query != null)
                     {
@@ -131,27 +126,26 @@ namespace BL
                             result.Objects = new List<object>();
                             foreach (var item in query)
                             {
-                                ML.Autor autor = new ML.Autor();
-                                autor.IdAutor = item.IdAutor;
-                                autor.Nombre = item.Nombre;
-                                autor.InformacionAdicional = item.InformacionAdicional;
-                                autor.Imagen = item.Imagen;
+                                ML.TipoMedio tipoMedio = new ML.TipoMedio();
+                                tipoMedio.IdTipoMedio = item.IdTipoMedio;
+                                tipoMedio.Nombre = item.Nombre;
+                                tipoMedio.Descripcion = item.Descripcion;
 
-                                result.Objects.Add(autor);
+                                result.Objects.Add(tipoMedio);
                             }
                             result.Correct = true;
-                            result.Message = "Autores consultados";
+                            result.Message = "Tipos de medio consultados";
                         }
                         else
                         {
                             result.Correct = true;
-                            result.Message = "La tabla de autores esta vacia";
+                            result.Message = "La tabla de Tipos de medio esta vacia";
                         }
                     }
                     else
                     {
                         result.Correct = false;
-                        result.Message = "No se pudo consultar los autores";
+                        result.Message = "No se pudo consultar los tipos de medio";
                     }
                 }
             }
@@ -163,42 +157,40 @@ namespace BL
             }
             return result;
         }
-        public static ML.Result AutorGetById(int IdAutor)
+        public static ML.Result TipoMedioGetById(int IdTipoMedio)
         {
             ML.Result result = new ML.Result();
             try
             {
                 using (DL.AoeganahuacBiblioTestContext context = new DL.AoeganahuacBiblioTestContext())
                 {
-                    var query = (from autoresLINQ in context.Autors
-                                 where autoresLINQ.IdAutor == IdAutor
+                    var query = (from tipoMediosLINQ in context.TipoMedios
+                                 where tipoMediosLINQ.IdTipoMedio == IdTipoMedio
                                  select new
                                  {
-                                     IdAutor = autoresLINQ.IdAutor,
-                                     Nombre = autoresLINQ.Nombre,
-                                     InformacionAdicional = autoresLINQ.InformacionAdicional,
-                                     Imagen = autoresLINQ.Imagen
+                                     IdTipoMedio = tipoMediosLINQ.IdTipoMedio,
+                                     Nombre = tipoMediosLINQ.Nombre,
+                                     Descripcion = tipoMediosLINQ.Descripcion
                                  }
                                  ).FirstOrDefault();
                     if (query != null)
                     {
                         var item = query;
-                        ML.Autor autor = new ML.Autor();
-                        autor.IdAutor = item.IdAutor;
-                        autor.Nombre = item.Nombre;
-                        autor.InformacionAdicional = item.InformacionAdicional;
-                        autor.Imagen = item.Imagen;
+                        ML.TipoMedio tipoMedio = new ML.TipoMedio();
+                        tipoMedio.IdTipoMedio = item.IdTipoMedio;
+                        tipoMedio.Nombre = item.Nombre;
+                        tipoMedio.Descripcion = item.Descripcion;
 
-                        result.Object = autor;
-                        
+                        result.Object = tipoMedio;
+
                         result.Correct = true;
-                        result.Message = "Autore consultados";
-                        
+                        result.Message = "Tipo de medio consultado";
+
                     }
                     else
                     {
                         result.Correct = false;
-                        result.Message = "No se pudo consultar al autor";
+                        result.Message = "No se pudo consultar el tipo de medio";
                     }
                 }
             }
