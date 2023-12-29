@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace DL;
+namespace PL;
 
 public partial class Medio
 {

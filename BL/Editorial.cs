@@ -54,7 +54,7 @@ namespace BL
                     SqlParameter nombre = new SqlParameter("@Nombre", editorial.Nombre);
                     SqlParameter informacionAdicional = new SqlParameter("@InformacionAdicional", editorial.InformacionAdicional);
                     SqlParameter imagen = new SqlParameter("@Imagen", editorial.Imagen);
-                    string store = "EditorialUpdate @IdAutor , @Nombre , @InformacionAdicional , @Imagen";
+                    string store = "EditorialUpdate @IdEditorial , @Nombre , @InformacionAdicional , @Imagen";
                     var query = context.Database.ExecuteSqlRaw(store, idEditorial, nombre, informacionAdicional, imagen);
                     //var query = context.Database.ExecuteSqlInterpolated($"AutorAdd {nombre}, {informacionAdicional}, {imagen}");
                     if (query > 0)

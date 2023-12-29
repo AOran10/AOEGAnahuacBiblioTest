@@ -1,0 +1,75 @@
+﻿@model ML.Editorial
+@{
+    ViewData["Title"] = "GetAll";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Editorial</h2>
+        </div>
+        <div class="col-md-12">
+            <h5>Añade, edita, elimina de la tabla</h5>
+            <hr />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-1 offset-md-11">
+            @Html.ActionLink(" +", "Form", "Editorial", null, new { @class = "btn btn-success bi-person-fill-add" })
+        </div>
+    </div>
+    <div>
+        @if (Model.Editoriales != null)
+        {
+            <div class="row">
+                <div class="col-md-12">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Editar</th>
+                                <th>Nombre</th>
+                                <th>Informacion</th>
+                                <th>Imagen</th>
+                                <th>Eliminar</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (ML.Editorial editorial in Model.Editoriales)
+                            {
+                                <tr>
+                                    <td class="text-center"><a class="btn btn-primary bi bi-pencil-fill " href="@Url.Action("Form", "Editorial", new {IdEditorial = editorial.IdEditorial})"><i class=""></i></a></td>
+
+
+                                    <td>@editorial.Nombre</td>
+                                    <td>@editorial.InformacionAdicional</td>
+                                    <td>
+                                        @if (editorial.Imagen == null)
+                                        {
+                                            <img src="https://th.bing.com/th/id/OIP.dhBwcZT_mUoZpOBSNsjHzgAAAA?rs=1&pid=ImgDetMain" id="imgEditorial" style="  width:100px; height:100px; " />
+                                        }
+                                        else
+                                        {
+                                            <img src="data:image/png;base64,@Convert.ToBase64String(editorial.Imagen)" id="imgEditorial" style="  width:100px; height:100px; " />
+                                        }
+                                    </td>
+                                    <td class="text-center">
+                                        <a class="btn btn-danger bi bi-trash" onclick="return confirm('¿Estas seguro de eliminar esta editorial?');" href="@Url.Action("Delete", "Editorial", new {IdEditorial = editorial.IdEditorial})"><i class=""></i></a>
+                                    </td>
+                                </tr>
+
+                            }
+                        </tbody>
+
+                    </table>
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="alert alert-danger" role="alert">
+                <h3>No se han podido recuperar editoriales</h3>
+            </div>
+        }
+    </div>
+</div>

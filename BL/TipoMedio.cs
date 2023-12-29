@@ -52,7 +52,7 @@ namespace BL
                     SqlParameter idTipoMedio = new SqlParameter("@IdTipoMedio", tipoMedio.IdTipoMedio);
                     SqlParameter nombre = new SqlParameter("@Nombre", tipoMedio.Nombre);
                     SqlParameter descripcion = new SqlParameter("@Descripcion", tipoMedio.Descripcion);
-                    string store = "TipoMedioUpdate @IdGenero , @Nombre , @Descripcion";
+                    string store = "TipoMedioUpdate @IdTipoMedio , @Nombre , @Descripcion";
                     var query = context.Database.ExecuteSqlRaw(store, idTipoMedio, nombre, descripcion);
                     //var query = context.Database.ExecuteSqlInterpolated($"AutorAdd {nombre}, {informacionAdicional}, {imagen}");
                     if (query > 0)
