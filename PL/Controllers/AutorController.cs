@@ -29,7 +29,7 @@ namespace PL.Controllers
             }
             return View(autor);
         }
-        [HttpPost]
+        [HttpPost]  
         public IActionResult Form(ML.Autor autor, IFormFile fuImagen)
         {
             ML.Result result = new ML.Result();

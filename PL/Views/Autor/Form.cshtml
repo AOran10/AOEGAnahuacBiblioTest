@@ -14,7 +14,7 @@
             <hr />
         </div>
     </div>
-    @using (Html.BeginForm("Form", "Autor", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    @using (Html.BeginForm("Form", "Autor", FormMethod.Post, new { enctype = "multipart/form-data", @id = "form" }))
     {
         <div class="row">
             <div class="col-md-12">
@@ -25,11 +25,13 @@
         <div class="row">
             <div class="col-md-3">
                 @Html.LabelFor(model => model.Nombre)
-                @Html.TextBoxFor(model => model.Nombre, new { @class = "form-control" })
+                @Html.TextBoxFor(model => model.Nombre, new { @class = "form-control",@onkeypress = "return OnlyLetters(event)" , @id = "txtNombre" , @autocomplete = "password" })
+                <label id="lblErrorNombre"></label>
             </div>
             <div class="col-md-5">
                 @Html.LabelFor(model => model.InformacionAdicional)
-                @Html.TextBoxFor(model => model.InformacionAdicional, new { @class = "form-control" })
+                @Html.TextBoxFor(model => model.InformacionAdicional, new { @class = "form-control" ,@onkeypress = "return SizeInfo()" , @id = "txtInfo" , @autocomplete = "password"})
+                <label id="lblErrorInfo"></label>
             </div>
         </div>
         <br />
@@ -55,6 +57,7 @@
         <div class="row">
             <div class="col-md-2">
                 <input type="submit" class="btn btn-success" value="@ViewBag.Accion" />
+                <btn onclick="SendForm(event);" class="btn btn-success" value="AJAX @ViewBag.Accion" />
             </div>
             <div class="col-md-2">
                 @Html.ActionLink(" Regresar", "GetAll", "Autor", new { area = "" }, new { @class = "btn btn-danger bi bi-backspace" })
