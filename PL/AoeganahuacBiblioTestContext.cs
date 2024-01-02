@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 
-namespace DL;
+namespace PL;
 
 public partial class AoeganahuacBiblioTestContext : DbContext
 {

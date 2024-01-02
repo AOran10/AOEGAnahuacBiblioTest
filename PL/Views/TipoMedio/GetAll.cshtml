@@ -1,0 +1,63 @@
+﻿@model ML.TipoMedio
+@{
+    ViewData["Title"] = "GetAll";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Tipos de medio</h2>
+        </div>
+        <div class="col-md-12">
+            <h5>Añade, edita, elimina de la tabla</h5>
+            <hr />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-1 offset-md-11">
+            @Html.ActionLink(" +", "Form", "TipoMedio", null, new { @class = "btn btn-success bi-person-fill-add" })
+        </div>
+    </div>
+    <div>
+        @if (Model.TipoMedios != null)
+        {
+            <div class="row">
+                <div class="col-md-12">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Editar</th>
+                                <th>Nombre</th>
+                                <th>Informacion</th>
+                                <th>Eliminar</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (ML.TipoMedio tipoMedio in Model.TipoMedios)
+                            {
+                                <tr>
+                                    <td class="text-center"><a class="btn btn-primary bi bi-pencil-fill " href="@Url.Action("Form", "TipoMedio", new {IdTipoMedio = tipoMedio.IdTipoMedio})"><i class=""></i></a></td>
+
+                                    <td>@tipoMedio.Nombre</td>
+                                    <td>@tipoMedio.Descripcion</td>
+                                    <td class="text-center">
+                                        <a class="btn btn-danger bi bi-trash" onclick="return confirm('¿Estas seguro de eliminar este tipo de medio?');" href="@Url.Action("Delete", "TipoMedio", new {IdTipoMedio = tipoMedio.IdTipoMedio})"><i class=""></i></a>
+                                    </td>
+                                </tr>
+
+                            }
+                        </tbody>
+
+                    </table>
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="alert alert-danger" role="alert">
+                <h3>No se han podido recuperar los tipos de medio</h3>
+            </div>
+        }
+    </div>
+</div>

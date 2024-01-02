@@ -1,0 +1,62 @@
+﻿@model ML.Idioma
+@{
+    ViewData["Title"] = "GetAll";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Idiomas</h2>
+        </div>
+        <div class="col-md-12">
+            <h5>Añade, edita, elimina de la tabla</h5>
+            <hr />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-1 offset-md-11">
+            @Html.ActionLink(" +", "Form", "Idioma", null, new { @class = "btn btn-success bi-person-fill-add" })
+        </div>
+    </div>
+    <div>
+        @if (Model.Idiomas != null)
+        {
+            <div class="row">
+                <div class="col-md-12">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Editar</th>
+                                <th>Nombre</th>
+                                <th>Eliminar</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (ML.Idioma idioma in Model.Idiomas)
+                            {
+                                <tr>
+                                    <td class="text-center"><a class="btn btn-primary bi bi-pencil-fill " href="@Url.Action("Form", "Idioma", new {IdIdioma = idioma.IdIdioma})"><i class=""></i></a></td>
+
+                                    <td>@idioma.Nombre</td>
+
+                                    <td class="text-center">
+                                        <a class="btn btn-danger bi bi-trash" onclick="return confirm('¿Estas seguro de eliminar este idioma?');" href="@Url.Action("Delete", "Idioma", new {IdIdioma = idioma.IdIdioma})"><i class=""></i></a>
+                                    </td>
+                                </tr>
+
+                            }
+                        </tbody>
+
+                    </table>
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="alert alert-danger" role="alert">
+                <h3>No se han podido recuperar los idiomas</h3>
+            </div>
+        }
+    </div>
+</div>

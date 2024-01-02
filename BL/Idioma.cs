@@ -1,6 +1,5 @@
 ﻿using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,30 +8,28 @@ using System.Threading.Tasks;
 
 namespace BL
 {
-    public class Autor
+    public class Idioma
     {
-        public static ML.Result AutorAdd(ML.Autor autor)
+        public static ML.Result IdiomaAdd(ML.Idioma idioma)
         {
             ML.Result result = new ML.Result();
             try
             {
                 using (DL.AoeganahuacBiblioTestContext context = new DL.AoeganahuacBiblioTestContext())
                 {
-                    SqlParameter nombre = new SqlParameter("@Nombre", autor.Nombre);
-                    SqlParameter informacionAdicional = new SqlParameter("@InformacionAdicional", autor.InformacionAdicional);
-                    SqlParameter imagen = new SqlParameter("@Imagen", autor.Imagen);
-                    string store = "AutorAdd @Nombre , @InformacionAdicional , @Imagen";
-                    var query = context.Database.ExecuteSqlRaw(store, nombre, informacionAdicional, imagen);
-                    //var query = context.Database.ExecuteSqlInterpolated($"AutorAdd {nombre}, {informacionAdicional}, {imagen}");
+                    SqlParameter nombre = new SqlParameter("@Nombre", idioma.Nombre);
+                    string store = "IdiomaAdd @Nombre";
+                    var query = context.Database.ExecuteSqlRaw(store, nombre);
+
                     if (query > 0)
                     {
                         result.Correct = true;
-                        result.Message = "Se ha ingresado al autor de manera correcta";
+                        result.Message = "Se ha ingresado el idioma de manera correcta";
                     }
                     else
                     {
                         result.Correct = false;
-                        result.Message = "No se pudo ingresar al autor";
+                        result.Message = "No se pudo ingresar el idioma";
                     }
                 }
             }
@@ -44,29 +41,27 @@ namespace BL
             }
             return result;
         }
-        public static ML.Result AutorUpdate(ML.Autor autor)
+        public static ML.Result IdiomaUpdate(ML.Idioma idioma)
         {
             ML.Result result = new ML.Result();
             try
             {
                 using (DL.AoeganahuacBiblioTestContext context = new DL.AoeganahuacBiblioTestContext())
                 {
-                    SqlParameter idAutor = new SqlParameter("@IdAutor", autor.IdAutor);
-                    SqlParameter nombre = new SqlParameter("@Nombre", autor.Nombre);
-                    SqlParameter informacionAdicional = new SqlParameter("@InformacionAdicional", autor.InformacionAdicional);
-                    SqlParameter imagen = new SqlParameter("@Imagen", autor.Imagen);
-                    string store = "AutorUpdate @IdAutor , @Nombre , @InformacionAdicional , @Imagen";
-                    var query = context.Database.ExecuteSqlRaw(store, idAutor, nombre, informacionAdicional, imagen);
-                    //var query = context.Database.ExecuteSqlInterpolated($"AutorAdd {nombre}, {informacionAdicional}, {imagen}");
+                    SqlParameter idIdioma = new SqlParameter("@IdIdioma", idioma.IdIdioma);
+                    SqlParameter nombre = new SqlParameter("@Nombre", idioma.Nombre);
+                    string store = "IdiomaUpdate @IdIdioma , @Nombre";
+                    var query = context.Database.ExecuteSqlRaw(store, idIdioma, nombre);
+
                     if (query > 0)
                     {
                         result.Correct = true;
-                        result.Message = "Se ha actualizado al autor de manera correcta";
+                        result.Message = "Se ha actualizado el idima de manera correcta";
                     }
                     else
                     {
                         result.Correct = false;
-                        result.Message = "No se pudo actualizar al autor";
+                        result.Message = "No se pudo actualizar el idioma";
                     }
                 }
             }
@@ -78,26 +73,26 @@ namespace BL
             }
             return result;
         }
-        public static ML.Result AutorDelete(int IdAutor)
+        public static ML.Result IdiomaDelete(int IdIdioma)
         {
             ML.Result result = new ML.Result();
             try
             {
                 using (DL.AoeganahuacBiblioTestContext context = new DL.AoeganahuacBiblioTestContext())
                 {
-                    SqlParameter idAutor = new SqlParameter("@IdAutor", IdAutor);
-                    string store = "AutorDelete @IdAutor";
-                    //var query = context.Database.ExecuteSqlRaw(store, idAutor);
-                    var query = context.Database.ExecuteSqlInterpolated($"AutorDelete {idAutor}");
+                    SqlParameter idIdioma = new SqlParameter("@IdIdioma", IdIdioma);
+
+                    var query = context.Database.ExecuteSqlInterpolated($"IdiomaDelete {idIdioma}");
+
                     if (query > 0)
                     {
                         result.Correct = true;
-                        result.Message = "Se ha eliminado al autor de manera correcta";
+                        result.Message = "Se ha eliminado el idioma de manera correcta";
                     }
                     else
                     {
                         result.Correct = false;
-                        result.Message = "No se pudo eliminar al autor";
+                        result.Message = "No se pudo eliminar el idioma";
                     }
                 }
             }
@@ -109,20 +104,18 @@ namespace BL
             }
             return result;
         }
-        public static ML.Result AutorGetAll()
+        public static ML.Result IdiomaGetAll()
         {
             ML.Result result = new ML.Result();
             try
             {
                 using (DL.AoeganahuacBiblioTestContext context = new DL.AoeganahuacBiblioTestContext())
                 {
-                    var query = (from autoresLINQ in context.Autors
+                    var query = (from idiomasLINQ in context.Idiomas
                                  select new
                                  {
-                                     IdAutor = autoresLINQ.IdAutor,
-                                     Nombre = autoresLINQ.Nombre,
-                                     InformacionAdicional = autoresLINQ.InformacionAdicional,
-                                     Imagen = autoresLINQ.Imagen
+                                     IdIdioma = idiomasLINQ.IdIdioma,
+                                     Nombre = idiomasLINQ.Nombre
                                  }).ToList();
                     if (query != null)
                     {
@@ -131,27 +124,25 @@ namespace BL
                             result.Objects = new List<object>();
                             foreach (var item in query)
                             {
-                                ML.Autor autor = new ML.Autor();
-                                autor.IdAutor = item.IdAutor;
-                                autor.Nombre = item.Nombre;
-                                autor.InformacionAdicional = item.InformacionAdicional;
-                                autor.Imagen = item.Imagen;
+                                ML.Idioma idioma = new ML.Idioma();
+                                idioma.IdIdioma = item.IdIdioma;
+                                idioma.Nombre = item.Nombre;
 
-                                result.Objects.Add(autor);
+                                result.Objects.Add(idioma);
                             }
                             result.Correct = true;
-                            result.Message = "Autores consultados";
+                            result.Message = "Idiomas consultados";
                         }
                         else
                         {
                             result.Correct = true;
-                            result.Message = "La tabla de autores esta vacia";
+                            result.Message = "La tabla de idiomas esta vacia";
                         }
                     }
                     else
                     {
                         result.Correct = false;
-                        result.Message = "No se pudo consultar los autores";
+                        result.Message = "No se pudo consultar los generos";
                     }
                 }
             }
@@ -163,42 +154,38 @@ namespace BL
             }
             return result;
         }
-        public static ML.Result AutorGetById(int IdAutor)
+        public static ML.Result IdiomaGetById(int IdIdioma)
         {
             ML.Result result = new ML.Result();
             try
             {
                 using (DL.AoeganahuacBiblioTestContext context = new DL.AoeganahuacBiblioTestContext())
                 {
-                    var query = (from autoresLINQ in context.Autors
-                                 where autoresLINQ.IdAutor == IdAutor
+                    var query = (from idiomasLINQ in context.Idiomas
+                                 where idiomasLINQ.IdIdioma == IdIdioma
                                  select new
                                  {
-                                     IdAutor = autoresLINQ.IdAutor,
-                                     Nombre = autoresLINQ.Nombre,
-                                     InformacionAdicional = autoresLINQ.InformacionAdicional,
-                                     Imagen = autoresLINQ.Imagen
+                                     IdIdioma = idiomasLINQ.IdIdioma,
+                                     Nombre = idiomasLINQ.Nombre
                                  }
                                  ).FirstOrDefault();
                     if (query != null)
                     {
                         var item = query;
-                        ML.Autor autor = new ML.Autor();
-                        autor.IdAutor = item.IdAutor;
-                        autor.Nombre = item.Nombre;
-                        autor.InformacionAdicional = item.InformacionAdicional;
-                        autor.Imagen = item.Imagen;
+                        ML.Idioma idioma = new ML.Idioma();
+                        idioma.IdIdioma = item.IdIdioma;
+                        idioma.Nombre = item.Nombre;
 
-                        result.Object = autor;
-                        
+                        result.Object = idioma;
+
                         result.Correct = true;
-                        result.Message = "Autore consultados";
-                        
+                        result.Message = "Idioma consultado";
+
                     }
                     else
                     {
                         result.Correct = false;
-                        result.Message = "No se pudo consultar al autor";
+                        result.Message = "No se pudo consultar el idioma";
                     }
                 }
             }
