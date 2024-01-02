@@ -1,0 +1,48 @@
+﻿@model Microsoft.AspNetCore.Identity.IdentityRole
+@{
+    ViewData["Title"] = "Form";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <center> <h2 style="font-family:'Times New Roman', Times, serif"> Nuevo Rol </h2></center>
+        <h5> Ingresa el Nombre del Nuevo Rol:</h5>
+    </div>
+</div>
+
+<center>
+    @using (Html.BeginForm("Form", "Rol", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <div class="row">
+            <div class="col-md-3" style="display: none;">
+                @Html.TextBoxFor(model => model.Id, new { @class = "form-control", autocomplete = "off" })
+            </div>
+
+            <div class="col-md-3">
+                @Html.LabelFor(model => model.Name)
+                <div class="input-group mb-3">
+                    <span class="input-group-text"><i class="bi bi-bookmark-star"></i></span>
+                    @if (Model.Id != null)
+                    {
+                        @Html.TextBoxFor(model => model.Name, new { @class = "form-control", @id = "txtNombre", autocomplete = "off" })
+                    }
+                    else
+                    {
+                        @Html.TextBoxFor(model => model.Name, new { @class = "form-control", @id = "txtNombre", @placeholder = "Ejmp: Usuario", autocomplete = "off" })
+                    }
+
+                    @Html.ValidationMessageFor(model => model.Name, null, new { @class = "text-danger" })
+                </div>
+
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-3">
+                    <input type="submit" value="Guardar" class="btn btn-success bi bi-hand-thumbs-up" />
+                    @Html.ActionLink("Regresar", "GetAll", "RoleController", htmlAttributes: new { @class = "btn btn-danger  bi bi-arrow-return-left" })
+                </div>
+            </div>
+        </div>
+    }
+</center>
