@@ -50,9 +50,14 @@ namespace PL.Controllers
             return View(medio);
         }
         [HttpPost]
-        public IActionResult Form(ML.Medio medio)
+        public IActionResult Form(ML.Medio medio, IFormFile fuImagen)
         {
             ML.Result result = new ML.Result();
+
+            if ((medio.Imagen != null && fuImagen != null) || (medio.Imagen == null && fuImagen != null))
+            {
+                medio.Imagen = ConvertirImagenABytes(fuImagen);
+            }
 
             if (medio.IdMedio == 0)
             {
@@ -92,6 +97,14 @@ namespace PL.Controllers
             ML.Result result = BL.Medio.MedioDelete(IdMedio);
             ViewBag.Mensaje = result.Message;
             return View("Modal");
+        }
+        public byte[] ConvertirImagenABytes(IFormFile file)
+        {
+            using (MemoryStream memoryStream = new MemoryStream())
+            {
+                file.CopyTo(memoryStream);
+                return memoryStream.ToArray();
+            }
         }
     }
 }

@@ -45,7 +45,7 @@
                             @foreach (ML.Medio medio in Model.Medios)
                             {
                                 <tr>
-                                    <td class="text-center"><a class="btn btn-primary bi bi-pencil-fill " href="@Url.Action("Form", "Medio", new {IdMedio = medio.IdMedio})"><i class=""></i></a></td>
+                                    <td class="text-center"><a class="btn btn-primary bi bi-pencil-fill " href="@Url.Action("Form", "MediaAdmin", new {IdMedio = medio.IdMedio})"><i class=""></i></a></td>
 
 
                                     <td>@medio.IdMedio</td>
@@ -68,7 +68,7 @@
                                         }
                                     </td>
                                     <td class="text-center">
-                                        <a class="btn btn-danger bi bi-trash" onclick="return confirm('¿Estas seguro de eliminar este medio?');" href="@Url.Action("Delete", "Medio", new {IdMedio = medio.IdMedio})"><i class=""></i></a>
+                                        <a class="btn btn-danger bi bi-trash" onclick="return confirm('¿Estas seguro de eliminar este medio?');" href="@Url.Action("Delete", "MediaAdmin", new {IdMedio = medio.IdMedio})"><i class=""></i></a>
                                     </td>
                                 </tr>
 
