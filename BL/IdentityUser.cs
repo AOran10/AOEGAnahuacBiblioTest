@@ -15,7 +15,7 @@ namespace BL
 
             try
             {
-                using (DL.AoeganahuacBiblioTest0Context context = new DL.AoeganahuacBiblioTest0Context())
+                using (DL.AoeganahuacBiblioTestContext context = new DL.AoeganahuacBiblioTestContext())
                 {
                     var query = (from user in context.AspNetUsers
                                  select new
@@ -57,7 +57,7 @@ namespace BL
 
             try
             {
-                using (DL.AoeganahuacBiblioTest0Context context = new DL.AoeganahuacBiblioTest0Context())
+                using (DL.AoeganahuacBiblioTestContext context = new DL.AoeganahuacBiblioTestContext())
                 {
                     var query = context.Database.ExecuteSqlRaw($"AddAspNetUserRoles '{user.IdUsuario}', '{user.Rol.RoleId}'");
 
