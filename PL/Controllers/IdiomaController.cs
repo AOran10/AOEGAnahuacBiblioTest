@@ -6,10 +6,7 @@ namespace PL.Controllers
     {
         public IActionResult GetAll()
         {
-            ML.Result result = BL.Idioma.IdiomaGetAll();
-            ML.Idioma idioma = new ML.Idioma();
-            idioma.Idiomas = result.Objects;
-            return View(idioma);
+            return View();
         }
         [HttpGet]
         public IActionResult Form(int? IdIdioma)
@@ -71,6 +68,12 @@ namespace PL.Controllers
             ML.Result result = BL.Idioma.IdiomaDelete(IdIdioma);
             ViewBag.Mensaje = result.Message;
             return View("Modal");
+        }
+        [HttpGet]
+        public JsonResult GetAllIdioma()
+        {
+            ML.Result result = BL.Idioma.IdiomaGetAll();
+            return Json(result);
         }
     }
 }

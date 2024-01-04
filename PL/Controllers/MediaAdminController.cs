@@ -6,12 +6,7 @@ namespace PL.Controllers
     {
         public IActionResult GetAll()
         {
-            ML.Result result = BL.Medio.MedioGetAll();
-
-            ML.Medio medio = new ML.Medio();
-            medio.Medios = result.Objects;
-
-            return View(medio);
+            return View();
         }
         [HttpGet]
         public IActionResult Form(int? IdMedio)
@@ -105,6 +100,14 @@ namespace PL.Controllers
                 file.CopyTo(memoryStream);
                 return memoryStream.ToArray();
             }
+        }
+        [HttpGet]
+        public JsonResult GetAllMedia()
+        {
+            ML.Result result = BL.Medio.MedioGetAll();
+
+            
+            return Json(result);
         }
     }
 }

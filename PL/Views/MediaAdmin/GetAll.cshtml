@@ -1,9 +1,12 @@
-﻿@model ML.Medio
+﻿
 @{
     ViewData["Title"] = "GetAll";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="~/lib/jquery/dist/jquery.js" type=”text/javascript”></script>
+<script src="~/lib/jquery/dist/jquery.min.js" type=”text/javascript”></script>
+<script type="text/javascript" src="~/js/MedioGetAll.js"></script>
 <div class="container">
     <div class="row">
         <div class="col-md-12">
@@ -19,72 +22,8 @@
             @Html.ActionLink(" +", "Form", "MediaAdmin", null, new { @class = "btn btn-success bi-person-fill-add" })
         </div>
     </div>
-    <div>
-        @if (Model.Medios != null)
-        {
-            <div class="row">
-                <div class="col-md-12">
-                    <table class="table table-hover">
-                        <thead>
-                            <tr>
-                                <th>Editar</th>
-                                <th>IdMedio</th>
-                                <th>Titulo</th>
-                                <th>Tipo de Medio</th>
-                                <th>Editorial</th>
-                                <th>Idioma</th>
-                                <th>Autor</th>
-                                <th>Genero</th>
-                                <th>Ejemplares</th>
-                                <th>En prestamo</th>
-                                <th>Imagen</th>
-                                <th>Eliminar</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach (ML.Medio medio in Model.Medios)
-                            {
-                                <tr>
-                                    <td class="text-center"><a class="btn btn-primary bi bi-pencil-fill " href="@Url.Action("Form", "MediaAdmin", new {IdMedio = medio.IdMedio})"><i class=""></i></a></td>
+    <div id="table_Container">
 
-
-                                    <td>@medio.IdMedio</td>
-                                    <td>@medio.Titulo</td>
-                                    <td>@medio.TipoMedio.Nombre</td>
-                                    <td>@medio.Editorial.Nombre</td>
-                                    <td>@medio.Idioma.Nombre</td>
-                                    <td>@medio.Autor.Nombre</td>
-                                    <td>@medio.Genero.Nombre</td>
-                                    <td>@medio.CantidadEjemplares</td>
-                                    <td>@medio.CantidadEnPrestamo</td>
-                                    <td>
-                                        @if (medio.Imagen == null)
-                                        {
-                                            <img src="https://th.bing.com/th/id/OIP.dhBwcZT_mUoZpOBSNsjHzgAAAA?rs=1&pid=ImgDetMain" id="imgMedio" style="  width:100px; height:100px; " />
-                                        }
-                                        else
-                                        {
-                                            <img src="data:image/png;base64,@Convert.ToBase64String(medio.Imagen)" id="imgMedio" style="  width:100px; height:100px; " />
-                                        }
-                                    </td>
-                                    <td class="text-center">
-                                        <a class="btn btn-danger bi bi-trash" onclick="return confirm('¿Estas seguro de eliminar este medio?');" href="@Url.Action("Delete", "MediaAdmin", new {IdMedio = medio.IdMedio})"><i class=""></i></a>
-                                    </td>
-                                </tr>
-
-                            }
-                        </tbody>
-
-                    </table>
-                </div>
-            </div>
-        }
-        else
-        {
-            <div class="alert alert-danger" role="alert">
-                <h3>No se han podido recuperar los medios</h3>
-            </div>
-        }
     </div>
 </div>
 

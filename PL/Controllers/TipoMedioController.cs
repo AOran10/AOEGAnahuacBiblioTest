@@ -6,10 +6,7 @@ namespace PL.Controllers
     {
         public IActionResult GetAll()
         {
-            ML.Result result = BL.TipoMedio.TipoMedioGetAll();
-            ML.TipoMedio tipoMedio = new ML.TipoMedio();
-            tipoMedio.TipoMedios = result.Objects;
-            return View(tipoMedio);
+            return View();
         }
         [HttpGet]
         public IActionResult Form(int? IdTipoMedio)
@@ -71,6 +68,11 @@ namespace PL.Controllers
             ML.Result result = BL.TipoMedio.TipoMedioDelete(IdTipoMedio);
             ViewBag.Mensaje = result.Message;
             return View("Modal");
+        }
+        public JsonResult GetAllTipoMedio()
+        {
+            ML.Result result = BL.TipoMedio.TipoMedioGetAll();
+            return Json(result);
         }
     }
 }

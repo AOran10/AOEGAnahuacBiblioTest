@@ -6,10 +6,7 @@ namespace PL.Controllers
     {
         public IActionResult GetAll()
         {
-            ML.Result result = BL.Editorial.EditorialGetAll();
-            ML.Editorial editorial = new ML.Editorial();
-            editorial.Editoriales = result.Objects;
-            return View(editorial);
+            return View();
         }
         [HttpGet]
         public IActionResult Form(int? IdEditorial)
@@ -83,6 +80,12 @@ namespace PL.Controllers
                 file.CopyTo(memoryStream);
                 return memoryStream.ToArray();
             }
+        }
+        [HttpGet]
+        public JsonResult GetAllEditorial()
+        {
+            ML.Result result = BL.Editorial.EditorialGetAll();
+            return Json(result);
         }
     }
 }
