@@ -93,5 +93,12 @@ namespace PL.Controllers
             ViewBag.Messaje = result.Message;
             return View("Modal");
         }
+
+        [HttpGet]
+        public JsonResult GetAllAutor()
+        {
+            ML.Result result = BL.Prestamo.PrestamoGetAll();
+            return Json(result);
+        }
     }
 }

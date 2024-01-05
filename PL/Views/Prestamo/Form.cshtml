@@ -1,0 +1,69 @@
+﻿@model ML.Prestamo
+@{
+    ViewData["Title"] = "Form";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1>Prestamos</h1>
+        </div>
+        <div class="col-md-12">
+            <h5>Para un Registro Nuevo, llena los campos del formulario</h5>
+        </div>
+    </div>
+</div>
+
+@using (Html.BeginForm("Form", "Prestamo", FormMethod.Post, new { enctype = "multipart/form-data", @id = "form" }))
+{
+    <div class="row">
+        <div class="col-md-12">
+            @Html.LabelFor(model => model.IdPrestamo, new { @class = "visually-hidden" })
+            @Html.TextBoxFor(model => model.IdPrestamo, new { @class = "visually-hidden" })
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-5">
+            @Html.LabelFor(model => model.IdentityUser)
+            @Html.TextBoxFor(model => model.IdentityUser.IdUsuario, new { @class = "form-control", @onkeypress = "return SizeInfo()", @id = "txtInfo", @autocomplete = "off" })
+            <label id="lblErrorInfo"></label>
+        </div>
+        <div class="col-md-3">
+            @Html.LabelFor(model => model.IdMedio)
+            @Html.DropDownListFor(model => model.IdMedio.IdMedio, new SelectList(Model.IdMedio.Medios, "IdMedio", "titulo"), "Selecciona una opcion", new { @class = "form-control" })
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-md-3">
+            @Html.LabelFor(model => model.FechaPrestamo)
+            @Html.TextBoxFor(model => model.FechaPrestamo, new { @class = "form-control", @onkeypress = "return Datepicker(event)", @id = "datepicker", placeholder = "Fecha del Prestamo" })
+            @Html.ValidationMessageFor(model => model.FechaPrestamo)
+        </div>
+        <div class="col-md-3">
+            @Html.LabelFor(model => model.FechaDevolucion)
+            @Html.TextBoxFor(model => model.FechaDevolucion, new { @class = "form-control", @onkeypress = "return Datepicker(event)", @id = "datepicker", placeholder = "Fecha del la Devolucion" })
+            @Html.ValidationMessageFor(model => model.FechaDevolucion)
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+            @Html.LabelFor(model => model.IdStatus)
+            @Html.DropDownListFor(model => model.IdStatus.IdStatus, new SelectList(Model.IdStatus.Descripcion, "IdStatus", "Descripcion"), "Selecciona una opcion", new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-2">
+            @* <input type="submit" class="btn btn-success" value="@ViewBag.Accion" /> *@
+            <btn onclick="SendForm(event);" class="btn btn-success">@ViewBag.Accion</btn>
+
+        </div>
+        <div class="col-md-2">
+            @Html.ActionLink(" Regresar", "GetAll", "Autor", new { area = "" }, new { @class = "btn btn-danger bi bi-backspace" })
+        </div>
+    </div>
+}
+</div>
+
+
