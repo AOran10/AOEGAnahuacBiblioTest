@@ -42,10 +42,8 @@ function renderMedios() {
             var Genero = medio.genero.nombre;
             var CantidadEjemplares = medio.cantidadEjemplares;
             var CantidadEnPrestamo = medio.cantidadEnPrestamo;
-            var PreImagen = medio.imagen
-            var ImagenFill = `data:image/png;base64,@Convert.ToBase64String(${PreImagen})`;
-            var ImagenNull = `https://th.bing.com/th/id/OIP.dhBwcZT_mUoZpOBSNsjHzgAAAA?rs=1&pid=ImgDetMain`;
-            var Imagen = medio.imagen != null ? ImagenFill : ImagenNull;
+
+            var Imagen = medio.imagen != null ? `data:image/png;base64,${medio.imagen}` : 'https://th.bing.com/th/id/OIP.dhBwcZT_mUoZpOBSNsjHzgAAAA?rs=1&pid=ImgDetMain';
 
             var fila = `
                         <tr>
@@ -63,7 +61,6 @@ function renderMedios() {
                                     
                                     <td>
                                             <img ${Imagen} id="imgMedio" style="  width:100px; height:100px; " />
-                                            <img ${Imagen} id='imgMedio' style='  width:100px; height:100px; ' />
                                         
                                     </td>
                                     <td class="text-center">
@@ -84,7 +81,7 @@ function renderMedios() {
                 + "<td class='text-center'>" + medio.genero.nombre + "</td>"
                 + "<td class='text-center'>" + medio.cantidadEjemplares + "</td>"
                 + "<td class='text-center'>" + medio.cantidadEnPrestamo + "</td>"
-                + "<td class='text-center'><img src='data:image/png;base64," + medio.imagen +" id='imgMedio' style='  width:100px; height:100px; ' /></td>"
+                + "<td class='text-center'><img src='" + Imagen + "' id='imgMedio' style='width:100px; height:100px;' /></td>"
                 + '<td class="text-center"><button class="btn btn-danger " onclick="Delete(' + medio.idMedio + ')" ><span class="bi bi-trash-fill"></span></button></td>'
 
                 + "</tr>";

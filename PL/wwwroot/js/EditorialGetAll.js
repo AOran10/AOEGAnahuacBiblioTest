@@ -28,10 +28,7 @@ function renderEditoriales() {
         $.each(result.objects, function (i, editorial) {
 
 
-            var PreImagen = editorial.imagen
-            var ImagenFill = `data:image/png;base64,@Convert.ToBase64String(${PreImagen})`;
-            var ImagenNull = `https://th.bing.com/th/id/OIP.dhBwcZT_mUoZpOBSNsjHzgAAAA?rs=1&pid=ImgDetMain`;
-            var Imagen = editorial.imagen != null ? ImagenFill : ImagenNull;
+            var Imagen = editorial.imagen != null ? `data:image/png;base64,${editorial.imagen}` : 'https://th.bing.com/th/id/OIP.dhBwcZT_mUoZpOBSNsjHzgAAAA?rs=1&pid=ImgDetMain';
 
             var trowTemplate =
                 '<tr>'
@@ -39,7 +36,7 @@ function renderEditoriales() {
                 + '<td class="text-center"> <button class="btn btn-info" onclick="GetById(' + editorial.idEditorial + ')"><span class="bi bi-pencil-square"></span></button></td>'
                 + "<td class='text-center'>" + editorial.nombre + "</td>"
                 + "<td class='text-center'>" + editorial.informacionAdicional + "</td>"
-                + "<td class='text-center'><img src='data:image/png;base64,'" + editorial.imagen + "' id='imgGenero' style='  width:100px; height:100px; ' /></td>"
+                + "<td class='text-center'><img src='" + Imagen + "' id='imgEditorial' style='width:100px; height:100px;' /></td>"
                 + '<td class="text-center"><button class="btn btn-danger " onclick="Delete(' + editorial.idEditorial + ')" ><span class="bi bi-trash-fill"></span></button></td>'
 
                 + "</tr>";

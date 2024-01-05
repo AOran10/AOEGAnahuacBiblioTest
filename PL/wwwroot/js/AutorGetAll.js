@@ -28,10 +28,9 @@ function renderAutores() {
         $.each(result.objects, function (i, autor) {
 
 
-            var PreImagen = autor.imagen
-            var ImagenFill = `data:image/png;base64,@Convert.ToBase64String(${PreImagen})`;
-            var ImagenNull = `https://th.bing.com/th/id/OIP.dhBwcZT_mUoZpOBSNsjHzgAAAA?rs=1&pid=ImgDetMain`;
-            var Imagen = autor.imagen != null ? ImagenFill : ImagenNull;
+            
+
+            var Imagen = autor.imagen != null ? `data:image/png;base64,${autor.imagen}` : 'https://th.bing.com/th/id/OIP.dhBwcZT_mUoZpOBSNsjHzgAAAA?rs=1&pid=ImgDetMain';
 
             var trowTemplate =
                 '<tr>'
@@ -39,7 +38,7 @@ function renderAutores() {
                 + '<td class="text-center"> <button class="btn btn-info" onclick="GetById(' + autor.idAutor + ')"><span class="bi bi-pencil-square"></span></button></td>'
                 + "<td class='text-center'>" + autor.nombre + "</td>"
                 + "<td class='text-center'>" + autor.informacionAdicional + "</td>"
-                + "<td class='text-center'><img src='data:image/png;base64,'" + autor.imagen + "' id='imgAutor' style='  width:100px; height:100px; ' /></td>"
+                + "<td class='text-center'><img src='" + Imagen + "' id='imgAutor' style='width:100px; height:100px;' /></td>"
                 + '<td class="text-center"><button class="btn btn-danger " onclick="Delete(' + autor.idAutor + ')" ><span class="bi bi-trash-fill"></span></button></td>'
 
                 + "</tr>";
