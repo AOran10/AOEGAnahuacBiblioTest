@@ -10,7 +10,7 @@ namespace ML
     {
         public int IdPrestamo { get; set; }
 
-        public ML.IdentityUser IdentityUser { get; set; }
+        public ML.IdentityUser IdentityUsers { get; set; }
 
         public ML.Medio IdMedio { get; set; }
 

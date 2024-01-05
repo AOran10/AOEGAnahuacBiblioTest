@@ -42,8 +42,9 @@ function renderPrestamos() {
 
                     + "</tr>";
                    
-                    $("#tableAutores tbody").append(trowTemplate);
-        });
+                    $("#tablePrestamos tbody").append(trowTemplate);
+                    
+        
                     var tBodyEndTemplate = `
                 </tbody>
             </table>
@@ -52,18 +53,16 @@ function renderPrestamos() {
     }).fail(function (xhr, status, error) {
         alert('Error en la actualizacion.' + error);
 
-    });
-
-
-}
+        });
 
 function GetById(id) {
     window.location.href = `/ Prestamo / Form ? IdPrestamo = ${ id } `;
 }
 
-function Delete(id) {
+        function Delete(id) {
 
     if (confirm("¿Estas seguro de Eliminar el Registro del Prestamo seleccionado?")) {
         window.location.href = `/ Prestamo / Delete ? IdPrestamo = ${ id } `;
     };
-};
+
+        };

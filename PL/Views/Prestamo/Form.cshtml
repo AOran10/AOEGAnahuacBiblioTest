@@ -22,17 +22,15 @@
             @Html.LabelFor(model => model.IdPrestamo, new { @class = "visually-hidden" })
             @Html.TextBoxFor(model => model.IdPrestamo, new { @class = "visually-hidden" })
         </div>
-    </div>
-    <div class="row">
-        <div class="col-md-5">
-            @Html.LabelFor(model => model.IdentityUser)
-            @Html.TextBoxFor(model => model.IdentityUser.IdUsuario, new { @class = "form-control", @onkeypress = "return SizeInfo()", @id = "txtInfo", @autocomplete = "off" })
-            <label id="lblErrorInfo"></label>
-        </div>
         <div class="col-md-3">
-            @Html.LabelFor(model => model.IdMedio)
-            @Html.DropDownListFor(model => model.IdMedio.IdMedio, new SelectList(Model.IdMedio.Medios, "IdMedio", "titulo"), "Selecciona una opcion", new { @class = "form-control" })
+            <label>Usuario:</label>
+            @Html.DropDownListFor(model => model.IdentityUsers, new SelectList(Model.IdentityUsers.IdUsuario, "IdentityUsers", "IdUsuario"), "--Seleccione un Usuario--", htmlAttributes: new { @id = "ddlUsuario", @class = "form-control" })
         </div>
+    </div>
+    <br />
+    <div class="col-md-3">
+        <label>Usuario:</label>
+        @Html.DropDownListFor(model => model.IdMedio, new SelectList(Model.IdMedio.Medios, "IdMedio", "IdMedio"), "--Seleccione un Medio--", htmlAttributes: new { @id = "ddlMedio", @class = "form-control" })
     </div>
     <br />
     <div class="row">
@@ -47,12 +45,28 @@
             @Html.ValidationMessageFor(model => model.FechaDevolucion)
         </div>
     </div>
+    <br />
     <div class="row">
-        <div class="col-md-3">
-            @Html.LabelFor(model => model.IdStatus)
-            @Html.DropDownListFor(model => model.IdStatus.IdStatus, new SelectList(Model.IdStatus.Descripcion, "IdStatus", "Descripcion"), "Selecciona una opcion", new { @class = "form-control" })
+        <div class="col-md-6">
+    <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+            Status
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                    <li><a class="dropdown-item" href="#">Prestado</a></li>
+                    <li><a class="dropdown-item" href="#">Devuelto</a></li>
+                    <li><a class="dropdown-item" href="#">En Espera</a></li>
+                    <li><a class="dropdown-item" href="#">Perdido</a></li>
+                    <li><a class="dropdown-item" href="#">Reservado</a></li>
+                    <li><a class="dropdown-item" href="#">Disponible</a></li>
+                    <li><a class="dropdown-item" href="#">No Disponible</a></li>
+                    <li><a class="dropdown-item" href="#">Medio No Fisico</a></li>
+                    <li><a class="dropdown-item" href="#">No puede prestarse</a></li>
+        </ul>
+    </div>
         </div>
     </div>
+    <br />
     <div class="row">
         <div class="col-md-2">
             @* <input type="submit" class="btn btn-success" value="@ViewBag.Accion" /> *@

@@ -18,7 +18,7 @@ namespace BL
             { 
                 using(DL.AoeganahuacBiblioTestContext context = new DL.AoeganahuacBiblioTestContext())
                 {
-                    SqlParameter IdentityUser = new SqlParameter("@IdentityUser", prestamo.IdentityUser);
+                    SqlParameter IdentityUser = new SqlParameter("@IdentityUser", prestamo.IdentityUsers);
                     SqlParameter IdMedio = new SqlParameter("@IdMedio", prestamo.IdMedio);
                     SqlParameter FechaPrestamo = new SqlParameter("@FechaPrestamo", prestamo.FechaPrestamo);
                     SqlParameter FechaDevolucion = new SqlParameter("@FechaDevolucion", prestamo.FechaDevolucion);
@@ -59,7 +59,7 @@ namespace BL
                 using(DL.AoeganahuacBiblioTestContext context = new DL.AoeganahuacBiblioTestContext())
                 {
                     SqlParameter IdPrestamo = new SqlParameter("@IdPrestamo", prestamo.IdPrestamo);
-                    SqlParameter IdentityUser = new SqlParameter("@IdentityUser", prestamo.IdentityUser);
+                    SqlParameter IdentityUser = new SqlParameter("@IdentityUser", prestamo.IdentityUsers);
                     SqlParameter IdMedio = new SqlParameter("@IdMedio", prestamo.IdMedio);
                     SqlParameter FechaPrestamo = new SqlParameter("@FechaPrestamo", prestamo.FechaPrestamo);
                     SqlParameter FechaDevolucion = new SqlParameter("@FechaDevolucion", prestamo.FechaDevolucion);
@@ -137,7 +137,7 @@ namespace BL
                                  select new
                                  {
                                      IdPrestamo = prestamosLINQ.IdPrestamo,
-                                     IdentityUser = prestamosLINQ.Id,
+                                     IdentityUsers = prestamosLINQ.Id,
                                      IdMedio = prestamosLINQ.IdMedio,
                                      FechaPrestamo = prestamosLINQ.FechaPrestamo,   
                                      FechaDevolucion = prestamosLINQ.FechaDevolucion,
@@ -153,8 +153,8 @@ namespace BL
                             {
                                 ML.Prestamo prestamo = new ML.Prestamo();
                                 prestamo.IdPrestamo = item.IdPrestamo;
-                                prestamo.IdentityUser = new ML.IdentityUser();
-                                prestamo.IdentityUser.IdUsuario = item.IdentityUser;
+                                prestamo.IdentityUsers = new ML.IdentityUser();
+                                prestamo.IdentityUsers.IdUsuario = item.IdentityUsers;
                                 prestamo.IdMedio = new ML.Medio();
                                 prestamo.IdMedio.IdMedio = item.IdMedio.Value;
                                 prestamo.FechaPrestamo = item.FechaPrestamo;
@@ -204,7 +204,7 @@ namespace BL
                                  select new
                                  {
                                      IdPrestamo = prestamosLINQ.IdPrestamo,
-                                     IdentityUser = prestamosLINQ.Id,
+                                     IdentityUsers = prestamosLINQ.Id,
                                      IdMedio = prestamosLINQ.IdMedio,
                                      FechaPrestamo = prestamosLINQ.FechaPrestamo,
                                      FechaDevolucion = prestamosLINQ.FechaDevolucion,
@@ -216,8 +216,8 @@ namespace BL
                         var item = query;
                         ML.Prestamo prestamo = new ML.Prestamo();
                         prestamo.IdPrestamo = item.IdPrestamo;
-                        prestamo.IdentityUser = new ML.IdentityUser();
-                        prestamo.IdentityUser.IdUsuario = item.IdentityUser;
+                        prestamo.IdentityUsers = new ML.IdentityUser();
+                        prestamo.IdentityUsers.IdUsuario = item.IdentityUsers;
                         prestamo.IdMedio = new ML.Medio();
                         prestamo.IdMedio.IdMedio = item.IdMedio.Value;
                         prestamo.FechaPrestamo = item.FechaPrestamo;

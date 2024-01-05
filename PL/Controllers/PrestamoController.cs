@@ -25,7 +25,7 @@ namespace PL.Controllers
             ML.Result resultMedio = BL.Medio.MedioGetAll();
             ML.Result resultStatus = BL.Status.StatusGetAll();
 
-            prestamo.IdentityUser = new ML.IdentityUser();
+            prestamo.IdentityUsers = new ML.IdentityUser();
             prestamo.IdMedio = new ML.Medio();
             prestamo.IdStatus = new ML.Status();
 
