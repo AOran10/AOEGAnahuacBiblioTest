@@ -38,4 +38,6 @@ public partial class Medio
     public virtual Idioma? IdIdiomaNavigation { get; set; }
 
     public virtual TipoMedio? IdTipoMedioNavigation { get; set; }
+
+    public virtual ICollection<Prestamo> Prestamos { get; set; } = new List<Prestamo>();
 }

@@ -37,14 +37,20 @@ public partial class AoeganahuacBiblioTestContext : DbContext
 
     public virtual DbSet<Medio> Medios { get; set; }
 
+    public virtual DbSet<Prestamo> Prestamos { get; set; }
+
+    public virtual DbSet<Status> Statuses { get; set; }
+
     public virtual DbSet<TipoMedio> TipoMedios { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Server=.; Database= AOEGAnahuacBiblioTest; TrustServerCertificate=True; User ID=sa; Password=pass@word1;");
+        => optionsBuilder.UseSqlServer("Server=LAPTOP-AD7LFKO5\\MSSQLSERVER1; Database=AOEGAnahuacBiblioTest; TrustServerCertificate=True; User ID=sa; Password=pass@word1;");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.UseCollation("SQL_Latin1_General_CP1_CI_AS");
+
         modelBuilder.Entity<AspNetRole>(entity =>
         {
             entity.Property(e => e.Name).HasMaxLength(256);
@@ -188,6 +194,41 @@ public partial class AoeganahuacBiblioTestContext : DbContext
             entity.HasOne(d => d.IdTipoMedioNavigation).WithMany(p => p.Medios)
                 .HasForeignKey(d => d.IdTipoMedio)
                 .HasConstraintName("FK__Medio__IdTipoMed__4222D4EF");
+        });
+
+        modelBuilder.Entity<Prestamo>(entity =>
+        {
+            entity.HasKey(e => e.IdPrestamo).HasName("PK__Prestamo__6FF194C0AE07EFC8");
+
+            entity.ToTable("Prestamo");
+
+            entity.Property(e => e.FechaDevolucion).HasColumnType("date");
+            entity.Property(e => e.FechaPrestamo).HasColumnType("date");
+            entity.Property(e => e.Id).HasMaxLength(450);
+
+            entity.HasOne(d => d.IdNavigation).WithMany(p => p.Prestamos)
+                .HasForeignKey(d => d.Id)
+                .HasConstraintName("FK__Prestamo__Id__04E4BC85");
+
+            entity.HasOne(d => d.IdMedioNavigation).WithMany(p => p.Prestamos)
+                .HasForeignKey(d => d.IdMedio)
+                .HasConstraintName("FK__Prestamo__IdMedi__05D8E0BE");
+
+            entity.HasOne(d => d.IdStatusNavigation).WithMany(p => p.Prestamos)
+                .HasForeignKey(d => d.IdStatus)
+                .HasConstraintName("FK__Prestamo__IdStat__06CD04F7");
+        });
+
+        modelBuilder.Entity<Status>(entity =>
+        {
+            entity.HasKey(e => e.IdStatus).HasName("PK__Status__B450643A091A5477");
+
+            entity.ToTable("Status");
+
+            entity.Property(e => e.IdStatus).ValueGeneratedNever();
+            entity.Property(e => e.Descripcion)
+                .HasMaxLength(30)
+                .IsUnicode(false);
         });
 
         modelBuilder.Entity<TipoMedio>(entity =>
