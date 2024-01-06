@@ -36,3 +36,41 @@ function SizeInfo() {
         return true;
     }
 }
+
+function SendForm(event) {
+    event.preventDefault();
+
+    var form = document.getElementById("form");
+    var formData = new FormData(form);
+
+    var editorial = {
+        IdEditorial: parseInt(form[0].value),
+        Nombre: form[1].value,
+        InformacionAdicional: form[2].value,
+        Imagen: null,
+        Editoriales: ["string"]
+    };
+
+    formData.append('editorial.IdEditorial', editorial.IdEditorial);
+    formData.append('editorial.Nombre', editorial.Nombre);
+    formData.append('editorial.InformacionAdicional', editorial.InformacionAdicional);
+    formData.append('editorial.Imagen', editorial.Imagen);
+
+
+    formData.set('fuImagen', form[3].files[0]);
+
+    $.ajax({
+        type: 'POST',
+        url: 'http://localhost:5083/Editorial/Form',
+        data: formData,
+        processData: false,
+        contentType: false,
+        success: function (result) {
+            alert("Formulario enviado correctamente");
+            window.location.href = `/Editorial/GetAll   `;
+        },
+        error: function (xhr, status, error) {
+            alert('No se pudo enviar el formulario.' + error);
+        }
+    });
+}

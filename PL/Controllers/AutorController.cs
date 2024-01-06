@@ -7,10 +7,7 @@ namespace PL.Controllers
     {
         public IActionResult GetAll()
         {
-            ML.Result result = BL.Autor.AutorGetAll();
-            ML.Autor autor = new ML.Autor();
-            autor.Autores = result.Objects;
-            return View(autor);
+            return View();
         }
         [HttpGet]
         public IActionResult Form(int? IdAutor)
@@ -84,6 +81,12 @@ namespace PL.Controllers
                 file.CopyTo(memoryStream);
                 return memoryStream.ToArray();
             }
+        }
+        [HttpGet]
+        public JsonResult GetAllAutor()
+        {
+            ML.Result result = BL.Autor.AutorGetAll();
+            return Json(result);
         }
     }
 }
