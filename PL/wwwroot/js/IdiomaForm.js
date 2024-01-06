@@ -24,3 +24,37 @@
 
    
 }
+
+
+function SendForm(event) {
+    event.preventDefault();
+
+    var form = document.getElementById("form");
+    var formData = new FormData(form);
+
+    var idioma = {
+        IdIdioma: parseInt(form[0].value),
+        Nombre: form[1].value,
+        Idiomas: ["string"]
+    };
+
+    formData.append('idioma.IdIdioma', idioma.IdIdioma);
+    formData.append('idioma.Nombre', idioma.Nombre);
+
+
+
+    $.ajax({
+        type: 'POST',
+        url: 'http://localhost:5083/Idioma/Form',
+        data: formData,
+        processData: false,
+        contentType: false,
+        success: function (result) {
+            alert("Formulario enviado correctamente");
+            window.location.href = `/Idioma/GetAll   `;
+        },
+        error: function (xhr, status, error) {
+            alert('No se pudo enviar el formulario.' + error);
+        }
+    });
+}

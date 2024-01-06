@@ -133,20 +133,32 @@ namespace BL
                 using (DL.AoeganahuacBiblioTestContext context = new DL.AoeganahuacBiblioTestContext())
                 {
                     var query = (from mediosLINQ in context.Medios
+                                 join tipoMedioLINQ in context.TipoMedios on mediosLINQ.IdTipoMedio equals tipoMedioLINQ.IdTipoMedio
+                                 join editorialLINQ in context.Editorials on mediosLINQ.IdEditorial equals editorialLINQ.IdEditorial
+                                 join idiomaLINQ in context.Idiomas on mediosLINQ.IdIdioma equals idiomaLINQ.IdIdioma
+                                 join autorLINQ in context.Autors on mediosLINQ.IdAutor equals autorLINQ.IdAutor
+                                 join generoLINQ in context.Generos on mediosLINQ.IdGenero equals generoLINQ.IdGenero
                                  select new
                                  {
                                      IdMedio = mediosLINQ.IdMedio,
                                      Titulo = mediosLINQ.Titulo,
                                      IdTipoMedio = mediosLINQ.IdTipoMedio,
+                                     NombreTipoMedio = tipoMedioLINQ.Nombre,
                                      IdEditorial = mediosLINQ.IdEditorial,
+                                     NombreEditorial  = editorialLINQ.Nombre,
                                      IdIdioma = mediosLINQ.IdIdioma,
+                                     NombreIdioma = idiomaLINQ.Nombre,
                                      IdAutor = mediosLINQ.IdAutor,
+                                     NombreAutor = autorLINQ.Nombre,
                                      IdGenero = mediosLINQ.IdGenero,
+                                     NombreGenero = generoLINQ.Nombre,
                                      Paginas = mediosLINQ.Paginas,
                                      Publicacion = mediosLINQ.Publicacion,
                                      CantidadEjemplares = mediosLINQ.CantidadEjemplares,
                                      CantidadEnPrestamo = mediosLINQ.CantidadEnPrestamo,
                                      Imagen = mediosLINQ.Imagen
+
+
                                  }).ToList();
                     if (query != null)
                     {
@@ -161,18 +173,24 @@ namespace BL
 
                                 medio.TipoMedio = new ML.TipoMedio();
                                 medio.TipoMedio.IdTipoMedio = item.IdTipoMedio.Value;
+                                medio.TipoMedio.Nombre = item.NombreTipoMedio;
 
                                 medio.Editorial = new ML.Editorial();
                                 medio.Editorial.IdEditorial = item.IdEditorial.Value;
+                                medio.Editorial.Nombre = item.NombreEditorial;
 
                                 medio.Idioma = new ML.Idioma();
                                 medio.Idioma.IdIdioma = item.IdIdioma.Value;
+                                medio.Idioma.Nombre = item.NombreIdioma;
+
 
                                 medio.Autor = new ML.Autor();
                                 medio.Autor.IdAutor = item.IdAutor.Value;
+                                medio.Autor.Nombre = item.NombreAutor;
 
                                 medio.Genero = new ML.Genero();
                                 medio.Genero.IdGenero = item.IdGenero.Value;
+                                medio.Genero.Nombre = item.NombreGenero;
 
                                 medio.Paginas = item.Paginas.Value;
                                 medio.Publicacion = item.Publicacion.Value;

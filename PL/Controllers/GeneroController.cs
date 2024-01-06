@@ -6,10 +6,7 @@ namespace PL.Controllers
     {
         public IActionResult GetAll()
         {
-            ML.Result result = BL.Genero.GeneroGetAll();
-            ML.Genero genero = new ML.Genero();
-            genero.Generos = result.Objects;
-            return View(genero);
+            return View();
         }
         [HttpGet]
         public IActionResult Form(int? IdGenero)
@@ -72,6 +69,10 @@ namespace PL.Controllers
             ViewBag.Mensaje = result.Message;
             return View("Modal");
         }
-        
+        public JsonResult GetAllGenero()
+        {
+            ML.Result result = BL.Genero.GeneroGetAll();
+            return Json(result);
+        }
     }
 }
