@@ -6,22 +6,26 @@ namespace PL.Controllers
 {
     public class PrestamoController : Controller
     {
+        [HttpGet]
         public IActionResult GetAll()
+        {
+            return View();
+        }
+    [HttpGet]
+    public JsonResult GetAllPrestamo()
         {
             ML.Result result = BL.Prestamo.PrestamoGetAll();
 
-            ML.Prestamo prestamo = new ML.Prestamo();
-            prestamo.Prestamos = result.Objects;
 
-            return View(prestamo);
+            return Json(result);
         }
 
         [HttpGet]
-        public IActionResult Form(int IdPrestamo)
+        public IActionResult Form(int? IdPrestamo)
         {
             ML.Prestamo prestamo = new ML.Prestamo();
 
-            // ML.Result.resultUsers = BL.IdentityUser.GetAll();
+            ML.Result resultUsers = BL.IdentityUser.GetAll();
             ML.Result resultMedio = BL.Medio.MedioGetAll();
             ML.Result resultStatus = BL.Status.StatusGetAll();
 
@@ -36,15 +40,16 @@ namespace PL.Controllers
             else
             {
                 ViewBag.Accion = "Actualizar Prestamo";
-                ML.Result result = BL.Prestamo.PrestamoGetById(IdPrestamo);
+                ML.Result result = BL.Prestamo.PrestamoGetById(IdPrestamo.Value);
                 prestamo = (ML.Prestamo)result.Object;
             }
 
             //prestamo.IdentityUser.IdentityUsers = resultIdentityUsers.Objects;
             prestamo.IdMedio.Medios = resultMedio.Objects;
             prestamo.IdStatus.StatusList = resultStatus.Objects;
+            prestamo.IdentityUsers.IdentityUsers = resultUsers.Objects;
 
-            return View(prestamo);
+			return View(prestamo);
         }
 
         [HttpPost]

@@ -1,7 +1,6 @@
-﻿
-@{
-    ViewData["Title"] = "GetAll";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+﻿@{
+	ViewData["Title"] = "GetAll";
+	Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 @* Librerias *@
@@ -10,24 +9,24 @@
 <script src="~/lib/jquery/dist/jquery.js" type=”text/javascript”></script>
 <script src="~/lib/jquery/dist/jquery.min.js" type=”text/javascript”></script>
 
-@* <script type="text/javascript" src="~/js/PrestamoGetAll.js"></script> *@
+<script type="text/javascript" src="~/js/PrestamoGetAll.js"></script>
 
 
 <div class="container">
-    <div class="row">
-        <div class="col col-md-12">
-            <h1>Todos los Prestamos</h1>
-        </div>
-        <div class="col col-md-12">
-            <h5>Agrega, Actualiza o Elimina el Registro que desees de la Tabla </h5>
-        </div>
-    </div>
+	<div class="row">
+		<div class="col col-md-12">
+			<h1>Todos los Prestamos</h1>
+		</div>
+		<div class="col col-md-12">
+			<h5>Agrega, Actualiza o Elimina el Registro que desees de la Tabla </h5>
+		</div>
+	</div>
 </div>
 <br />
 <div class="row">
-    <div class="col-md-1 offset-md-11">
-        @Html.ActionLink(" +", "Form", "Prestamo", null, new { @class = "btn btn-success bi bi-book" })
-    </div>
+	<div class="col-md-1 offset-md-11">
+		@Html.ActionLink(" +", "Form", "Prestamo", null, new { @class = "btn btn-success bi bi-book" })
+	</div>
 </div>
 <div id="table_Container">
 </div>

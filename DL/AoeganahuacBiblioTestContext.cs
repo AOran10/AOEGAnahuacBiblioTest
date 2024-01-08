@@ -45,12 +45,10 @@ public partial class AoeganahuacBiblioTestContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Server=LAPTOP-AD7LFKO5\\MSSQLSERVER1; Database=AOEGAnahuacBiblioTest; TrustServerCertificate=True; User ID=sa; Password=pass@word1;");
+        => optionsBuilder.UseSqlServer("Server=.; Database= AOEGAnahuacBiblioTest; TrustServerCertificate=True; User ID=sa; Password=pass@word1;");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.UseCollation("SQL_Latin1_General_CP1_CI_AS");
-
         modelBuilder.Entity<AspNetRole>(entity =>
         {
             entity.Property(e => e.Name).HasMaxLength(256);
@@ -198,7 +196,7 @@ public partial class AoeganahuacBiblioTestContext : DbContext
 
         modelBuilder.Entity<Prestamo>(entity =>
         {
-            entity.HasKey(e => e.IdPrestamo).HasName("PK__Prestamo__6FF194C0AE07EFC8");
+            entity.HasKey(e => e.IdPrestamo).HasName("PK__Prestamo__6FF194C08AD57D30");
 
             entity.ToTable("Prestamo");
 
@@ -208,20 +206,20 @@ public partial class AoeganahuacBiblioTestContext : DbContext
 
             entity.HasOne(d => d.IdNavigation).WithMany(p => p.Prestamos)
                 .HasForeignKey(d => d.Id)
-                .HasConstraintName("FK__Prestamo__Id__04E4BC85");
+                .HasConstraintName("FK__Prestamo__Id__07C12930");
 
             entity.HasOne(d => d.IdMedioNavigation).WithMany(p => p.Prestamos)
                 .HasForeignKey(d => d.IdMedio)
-                .HasConstraintName("FK__Prestamo__IdMedi__05D8E0BE");
+                .HasConstraintName("FK__Prestamo__IdMedi__08B54D69");
 
             entity.HasOne(d => d.IdStatusNavigation).WithMany(p => p.Prestamos)
                 .HasForeignKey(d => d.IdStatus)
-                .HasConstraintName("FK__Prestamo__IdStat__06CD04F7");
+                .HasConstraintName("FK__Prestamo__IdStat__09A971A2");
         });
 
         modelBuilder.Entity<Status>(entity =>
         {
-            entity.HasKey(e => e.IdStatus).HasName("PK__Status__B450643A091A5477");
+            entity.HasKey(e => e.IdStatus).HasName("PK__Status__B450643AAA1672DD");
 
             entity.ToTable("Status");
 

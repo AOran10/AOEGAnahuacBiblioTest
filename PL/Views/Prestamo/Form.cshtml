@@ -24,13 +24,13 @@
         </div>
         <div class="col-md-3">
             <label>Usuario:</label>
-            @Html.DropDownListFor(model => model.IdentityUsers, new SelectList(Model.IdentityUsers.IdUsuario, "IdentityUsers", "IdUsuario"), "--Seleccione un Usuario--", htmlAttributes: new { @id = "ddlUsuario", @class = "form-control" })
+            @Html.DropDownListFor(model => model.IdentityUsers, new SelectList(Model.IdentityUsers.IdentityUsers , "IdUsuario", "UserName"), "--Seleccione un Usuario--", htmlAttributes: new { @id = "ddlUsuario", @class = "form-control" })
         </div>
     </div>
     <br />
     <div class="col-md-3">
-        <label>Usuario:</label>
-        @Html.DropDownListFor(model => model.IdMedio, new SelectList(Model.IdMedio.Medios, "IdMedio", "IdMedio"), "--Seleccione un Medio--", htmlAttributes: new { @id = "ddlMedio", @class = "form-control" })
+        <label>Medio:</label>
+        @Html.DropDownListFor(model => model.IdMedio, new SelectList(Model.IdMedio.Medios, "IdMedio", "Titulo"), "--Seleccione un Medio--", htmlAttributes: new { @id = "ddlMedio", @class = "form-control" })
     </div>
     <br />
     <div class="row">
