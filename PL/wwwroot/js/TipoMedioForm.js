@@ -37,3 +37,38 @@ function SizeInfo() {
         return true;
     }
 }
+
+function SendForm(event) {
+    event.preventDefault();
+
+    var form = document.getElementById("form");
+    var formData = new FormData(form);
+
+    var tipoMedio = {
+        IdTipoMedio: parseInt(form[0].value),
+        Nombre: form[1].value,
+        Descripcion: form[2].value,
+        TipoMedios: ["string"]
+    };
+
+    formData.append('tipoMedio.IdTipoMedio', tipoMedio.IdTipoMedio);
+    formData.append('tipoMedio.Nombre', tipoMedio.Nombre);
+    formData.append('tipoMedio.Descripcion', tipoMedio.Descripcion);
+
+
+
+    $.ajax({
+        type: 'POST',
+        url: 'http://localhost:5083/TipoMedio/Form',
+        data: formData,
+        processData: false,
+        contentType: false,
+        success: function (result) {
+            alert("Formulario enviado correctamente");
+            window.location.href = `/TipoMedio/GetAll   `;
+        },
+        error: function (xhr, status, error) {
+            alert('No se pudo enviar el formulario.' + error);
+        }
+    });
+}

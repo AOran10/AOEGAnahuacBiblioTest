@@ -56,8 +56,9 @@
         </div>
         <div class="row">
             <div class="col-md-2">
-                <input type="submit" class="btn btn-success" value="@ViewBag.Accion" />
-                <btn onclick="SendForm(event);" class="btn btn-success" value="AJAX @ViewBag.Accion" />
+                @* <input type="submit" class="btn btn-success" value="@ViewBag.Accion" /> *@
+                <btn onclick="SendForm(event);" class="btn btn-success">@ViewBag.Accion</btn>
+                
             </div>
             <div class="col-md-2">
                 @Html.ActionLink(" Regresar", "GetAll", "Autor", new { area = "" }, new { @class = "btn btn-danger bi bi-backspace" })

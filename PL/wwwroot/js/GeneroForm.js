@@ -38,3 +38,38 @@ function SizeInfo() {
         return true;
     }
 }
+
+function SendForm(event) {
+    event.preventDefault();
+
+    var form = document.getElementById("form");
+    var formData = new FormData(form);
+
+    var genero = {
+        IdGenero: parseInt(form[0].value),
+        Nombre: form[1].value,
+        Descripcion: form[2].value,
+        Generos: ["string"]
+    };
+
+    formData.append('genero.IdGenero', genero.IdGenero);
+    formData.append('genero.Nombre', genero.Nombre);
+    formData.append('genero.Descripcion', genero.Descripcion);
+
+
+
+    $.ajax({
+        type: 'POST',
+        url: 'http://localhost:5083/Genero/Form',
+        data: formData,
+        processData: false,
+        contentType: false,
+        success: function (result) {
+            alert("Formulario enviado correctamente");
+            window.location.href = `/Genero/GetAll   `;
+        },
+        error: function (xhr, status, error) {
+            alert('No se pudo enviar el formulario.' + error);
+        }
+    });
+}
