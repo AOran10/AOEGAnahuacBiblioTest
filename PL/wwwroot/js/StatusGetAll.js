@@ -1,18 +1,18 @@
 ﻿$(document).ready(function () {
-    renderGeneros();
+    renderStatus();
 });
 
-function renderGeneros() {
+function renderStatus() {
     $("#table_Container").empty();
 
     var settings = {
         type: 'GET',
-        url: 'http://localhost:5083/Genero/GetAllGenero',
+        url: 'http://localhost:5083/Status/StatusGetAll',
         contentType: "application/json; charset=uft-8",
     };
     $.ajax(settings).done(function (result) {
         var theadTemplate = `
-                        <table class="table table-hover" id="tableGeneros">
+                        <table class="table table-hover" id="tableStatus">
                         <thead>
                             <tr>
                                  <th>Editar</th>
@@ -34,7 +34,7 @@ function renderGeneros() {
      
                 + "</tr>";
             
-            $("#tableGeneros tbody").append(trowTemplate);
+            $("#tableStatus tbody").append(trowTemplate);
         });
         var tBodyEndTemplate = `
                         </tbody>

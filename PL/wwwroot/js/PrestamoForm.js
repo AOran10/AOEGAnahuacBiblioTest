@@ -26,7 +26,7 @@ function SendForm(event) {
 
     $.ajax({
         type: 'POST',
-        url:
+        url: 'http://localhost:5083/Prestamo/PrestamoGetAll',
             data: fromData,
         processData: false,
         contentType: false,
