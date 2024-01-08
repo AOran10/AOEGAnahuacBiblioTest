@@ -28,27 +28,13 @@ function renderPrestamos() {
                 <tbody>               
                   `;
 
-        $("#table_container").append(theadTemplate);
-                $.each(result.objects, function (i, prestamo){
-                    var trowTemplate =
-                        '<tr>'
-                        + '<td class="text-center"><button class="btn btn-info" onclick="GetById(' + prestamo.IdPrestamo + ')"><span class=""></span></button></td>'
-                        + "<td class='text-center'>" + prestamo.IdPrestamo + "</td>"
-                        + "<td class='text-center'>" + prestamo.IdentityUser + "</td>"
-                        + "<td class='text-center'>" + prestamo.IdMedio + "</td>"
-                        + "<td class='text-center'>" + prestamo.FechaPrestamo + "</td>"
-                        + "<td class='text-center'>" + prestamo.FechaDevolucion + "</td>"
-                        + "<td class='text-center'>" + prestamo.IdStatus + "</td>"
-                        + '<td class="text-center"><button class="btn btn-danger " onclick="Delete(' + prestamo.IdPrestamo + ')" ><span class="bi bi-trash-fill"></span></button></td>'
-                        + "</tr>";
-                   
-                    $("#tablePrestamos tbody").append(trowTemplate);
-                    
-                });
-                    var tBodyEndTemplate = `
-                </tbody>
-            </table>
-        `;
+        $("#table_Container").append(theadTemplate);
+                
+
+        var tBodyEndTemplate = `
+                        </tbody>
+                    </table>
+                    `;
         $("#table_Container").append(tBodyEndTemplate);
         }).fail(function (xhr, status, error) {
         alert('Error en la actualizacion.' + error);

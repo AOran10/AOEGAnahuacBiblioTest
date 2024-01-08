@@ -24,22 +24,17 @@ function renderGeneros() {
                         <tbody>
                     `;
         $("#table_Container").append(theadTemplate);
-        $.each(result.objects, function (i, genero) {
+            $.each(result.objects, function (i, genero) {
+                var trowTemplate =
+                    '<tr>'
+                        + '<td class="text-center"> <button class="btn btn-info" onclick="GetById(' + genero.idGenero + ')"><span class="bi bi-pencil-square"></span></button></td>'
+                        + "<td class='text-center'>" + genero.nombre + "</td>"
+                        + "<td class='text-center'>" + genero.descripcion + "</td>"
+                        + '<td class="text-center"><button class="btn btn-danger" onclick="Delete(' + genero.idGenero + ')" ><span class="bi bi-trash-fill"></span></button></td>'
+                    + "</tr>";
 
-
-
-            var trowTemplate =
-                '<tr>'
-
-                + '<td class="text-center"> <button class="btn btn-info" onclick="GetById(' + genero.idGenero + ')"><span class="bi bi-pencil-square"></span></button></td>'
-                + "<td class='text-center'>" + genero.nombre + "</td>"
-                + "<td class='text-center'>" + genero.descripcion + "</td>"
-                + '<td class="text-center"><button class="btn btn-danger " onclick="Delete(' + genero.idGenero + ')" ><span class="bi bi-trash-fill"></span></button></td>'
-
-                + "</tr>";
-            //$("#table_Container").append(trowTemplate);
-            $("#tableGeneros tbody").append(trowTemplate);
-        });
+                $("#tableGeneros tbody").append(trowTemplate);
+            });
         var tBodyEndTemplate = `
                         </tbody>
                     </table>
