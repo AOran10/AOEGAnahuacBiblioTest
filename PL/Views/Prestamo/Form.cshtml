@@ -34,16 +34,18 @@
     </div>
     <br />
     <div class="row">
-        <div class="col-md-3">
-            @Html.LabelFor(model => model.FechaPrestamo)
-            @Html.TextBoxFor(model => model.FechaPrestamo, new { @class = "form-control", @onkeypress = "return Datepicker(event)", @id = "datepicker", placeholder = "Fecha del Prestamo" })
-            @Html.ValidationMessageFor(model => model.FechaPrestamo)
-        </div>
-        <div class="col-md-3">
-            @Html.LabelFor(model => model.FechaDevolucion)
-            @Html.TextBoxFor(model => model.FechaDevolucion, new { @class = "form-control", @onkeypress = "return Datepicker(event)", @id = "datepicker", placeholder = "Fecha del la Devolucion" })
-            @Html.ValidationMessageFor(model => model.FechaDevolucion)
-        </div>
+        <main class="container">
+            <div class="row" style="padding-top: 100px">
+                <div class="col">
+                    <input data-date-format="dd/mm/yyyy" id="datepicker1">
+                </div>
+            </div>
+            <div class="row" style="padding-top: 100px">
+                <div class="col">
+                    <input data-date-format="dd/mm/yyyy" id="datepicker2">
+                </div>
+            </div>
+        </main>
     </div>
     <br />
     <div class="row">
@@ -79,5 +81,28 @@
     </div>
 }
 </div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script type="text/javascript">
+
+    $('#datepicker1').datepicker({
+        weekStart: 1,
+        daysOfWeekHighlighted: "6,0",
+        autoclose: true,
+        todayHighlight: true,
+    });
+    $('#datepicker1').datepicker("setDate", new Date());
+
+     $('#datepicker2').datepicker({
+        weekStart: 1,
+        daysOfWeekHighlighted: "6,0",
+        autoclose: true,
+        todayHighlight: true,
+    });
+    $('#datepicker2').datepicker("setDate", new Date());
+
+</script>
 
 
