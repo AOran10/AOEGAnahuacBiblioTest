@@ -10,6 +10,7 @@ function renderGeneros() {
         url: 'http://localhost:5083/Genero/GetAllGenero',
         contentType: "application/json; charset=uft-8",
     };
+    //AJAX
     $.ajax(settings).done(function (result) {
         var theadTemplate = `
                         <table class="table table-hover" id="tableGeneros">
