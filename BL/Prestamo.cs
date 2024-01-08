@@ -19,10 +19,10 @@ namespace BL
                 using(DL.AoeganahuacBiblioTestContext context = new DL.AoeganahuacBiblioTestContext())
                 {
                     SqlParameter IdentityUser = new SqlParameter("@IdentityUser", prestamo.IdentityUsers);
-                    SqlParameter IdMedio = new SqlParameter("@IdMedio", prestamo.IdMedio);
+                    SqlParameter IdMedio = new SqlParameter("@IdMedio", prestamo.Medio);
                     SqlParameter FechaPrestamo = new SqlParameter("@FechaPrestamo", prestamo.FechaPrestamo);
                     SqlParameter FechaDevolucion = new SqlParameter("@FechaDevolucion", prestamo.FechaDevolucion);
-                    SqlParameter IdStatus = new SqlParameter("@IdStatus", prestamo.IdStatus);
+                    SqlParameter IdStatus = new SqlParameter("@IdStatus", prestamo.Status);
 
                     string store = "PrestamoAdd @IdentityUser, @IdMedio, @FechaPrestamo, @FechaDevolucion, @IdStatus";
 
@@ -60,10 +60,10 @@ namespace BL
                 {
                     SqlParameter IdPrestamo = new SqlParameter("@IdPrestamo", prestamo.IdPrestamo);
                     SqlParameter IdentityUser = new SqlParameter("@IdentityUser", prestamo.IdentityUsers);
-                    SqlParameter IdMedio = new SqlParameter("@IdMedio", prestamo.IdMedio);
+                    SqlParameter IdMedio = new SqlParameter("@IdMedio", prestamo.Medio.IdMedio);
                     SqlParameter FechaPrestamo = new SqlParameter("@FechaPrestamo", prestamo.FechaPrestamo);
                     SqlParameter FechaDevolucion = new SqlParameter("@FechaDevolucion", prestamo.FechaDevolucion);
-                    SqlParameter IdStatus = new SqlParameter("@IdStatus", prestamo.IdStatus);
+                    SqlParameter IdStatus = new SqlParameter("@IdStatus", prestamo.Status.IdStatus);
 
                     string store = "PrestamoUpdate @IdPrestamo, @IdentityUser, @IdMedio, @FechaPrestamo, @FechaDevolucion, @IdStatus";
 
@@ -155,12 +155,12 @@ namespace BL
                                 prestamo.IdPrestamo = item.IdPrestamo;
                                 prestamo.IdentityUsers = new ML.IdentityUser();
                                 prestamo.IdentityUsers.IdUsuario = item.IdentityUsers;
-                                prestamo.IdMedio = new ML.Medio();
-                                prestamo.IdMedio.IdMedio = item.IdMedio.Value;
+                                prestamo.Medio = new ML.Medio();
+                                prestamo.Medio.IdMedio = item.IdMedio.Value;
                                 prestamo.FechaPrestamo = item.FechaPrestamo;
                                 prestamo.FechaDevolucion = item.FechaDevolucion;
-                                prestamo.IdStatus = new ML.Status();
-                                prestamo.IdStatus.IdStatus = item.IdStatus.Value;
+                                prestamo.Status = new ML.Status();
+                                prestamo.Status.IdStatus = item.IdStatus.Value;
 
                                 result.Objects.Add(prestamo);
                             }
@@ -218,12 +218,12 @@ namespace BL
                         prestamo.IdPrestamo = item.IdPrestamo;
                         prestamo.IdentityUsers = new ML.IdentityUser();
                         prestamo.IdentityUsers.IdUsuario = item.IdentityUsers;
-                        prestamo.IdMedio = new ML.Medio();
-                        prestamo.IdMedio.IdMedio = item.IdMedio.Value;
+                        prestamo.Medio = new ML.Medio();
+                        prestamo.Medio.IdMedio = item.IdMedio.Value;
                         prestamo.FechaPrestamo = item.FechaPrestamo;
                         prestamo.FechaDevolucion = item.FechaDevolucion;
-                        prestamo.IdStatus = new ML.Status();
-                        prestamo.IdStatus.IdStatus = item.IdStatus.Value;
+                        prestamo.Status = new ML.Status();
+                        prestamo.Status.IdStatus = item.IdStatus.Value;
 
                         result.Object = prestamo;
                         result.Correct = true;

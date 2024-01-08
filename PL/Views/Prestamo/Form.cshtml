@@ -3,7 +3,10 @@
     ViewData["Title"] = "Form";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script type="text/javascript" src="~/js/PrestamoForm.js"></script>
 <div class="container">
     <div class="row">
         <div class="col-md-12">
@@ -13,7 +16,6 @@
             <h5>Para un Registro Nuevo, llena los campos del formulario</h5>
         </div>
     </div>
-</div>
 
 @using (Html.BeginForm("Form", "Prestamo", FormMethod.Post, new { enctype = "multipart/form-data", @id = "form" }))
 {
@@ -30,9 +32,8 @@
     <br />
     <div class="col-md-3">
         <label>Medio:</label>
-        @Html.DropDownListFor(model => model.IdMedio, new SelectList(Model.IdMedio.Medios, "IdMedio", "Titulo"), "--Seleccione un Medio--", htmlAttributes: new { @id = "ddlMedio", @class = "form-control" })
+        @Html.DropDownListFor(model => model.Medio, new SelectList(Model.Medio.Medios, "IdMedio", "Titulo"), "--Seleccione un Medio--", htmlAttributes: new { @id = "ddlMedio", @class = "form-control" })
     </div>
-    <br />
     <div class="row">
         <main class="container">
             <div class="row" style="padding-top: 100px">
@@ -82,9 +83,6 @@
 }
 </div>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 <script type="text/javascript">
 
     $('#datepicker1').datepicker({
@@ -95,7 +93,7 @@
     });
     $('#datepicker1').datepicker("setDate", new Date());
 
-     $('#datepicker2').datepicker({
+    $('#datepicker2').datepicker({
         weekStart: 1,
         daysOfWeekHighlighted: "6,0",
         autoclose: true,
@@ -104,5 +102,3 @@
     $('#datepicker2').datepicker("setDate", new Date());
 
 </script>
-
-

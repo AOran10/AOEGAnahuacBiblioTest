@@ -30,8 +30,8 @@ namespace PL.Controllers
             ML.Result resultStatus = BL.Status.StatusGetAll();
 
             prestamo.IdentityUsers = new ML.IdentityUser();
-            prestamo.IdMedio = new ML.Medio();
-            prestamo.IdStatus = new ML.Status();
+            prestamo.Medio = new ML.Medio();
+            prestamo.Status = new ML.Status();
 
             if (IdPrestamo == 0 || IdPrestamo == null)
             {
@@ -45,8 +45,8 @@ namespace PL.Controllers
             }
 
             //prestamo.IdentityUser.IdentityUsers = resultIdentityUsers.Objects;
-            prestamo.IdMedio.Medios = resultMedio.Objects;
-            prestamo.IdStatus.StatusList = resultStatus.Objects;
+            prestamo.Medio.Medios = resultMedio.Objects;
+            prestamo.Status.StatusList = resultStatus.Objects;
             prestamo.IdentityUsers.IdentityUsers = resultUsers.Objects;
 
 			return View(prestamo);

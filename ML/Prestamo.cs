@@ -12,13 +12,13 @@ namespace ML
 
         public ML.IdentityUser IdentityUsers { get; set; }
 
-        public ML.Medio IdMedio { get; set; }
+        public ML.Medio Medio { get; set; }
 
         public DateTime? FechaPrestamo { get; set; }
 
         public DateTime? FechaDevolucion { get; set; }
         
-        public ML.Status IdStatus { get; set; }
+        public ML.Status Status { get; set; }
         public List<object> Prestamos { get; set; }
              
     }
