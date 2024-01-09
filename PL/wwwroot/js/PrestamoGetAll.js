@@ -29,7 +29,6 @@ function renderPrestamos() {
                   `;
 
         $("#table_Container").append(theadTemplate);
-                
 
         var tBodyEndTemplate = `
                         </tbody>
