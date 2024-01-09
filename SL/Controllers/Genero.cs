@@ -6,16 +6,17 @@ using ML;
 
 namespace SL.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[Controller]")]
     [EnableCors("API")]
     [ApiController]
     public class Genero : ControllerBase
     {
         // GET: api/<Genero>
+       
         [HttpGet("GetAll")]
         public IActionResult GetAll()
-        {           
-            ML.Result result = BL.Genero.GeneroGetAll();
+        {
+            ML.Result result = BL.Genero.GeneroGetAll();           
 
             if (result.Correct)
             {
@@ -28,6 +29,7 @@ namespace SL.Controllers
         }
 
         // GET api/<Genero>/5
+       
         [EnableCors("API")]
         [HttpGet("GetBiId")]
         public IActionResult GetById(int IdGenero) 

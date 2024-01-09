@@ -4,14 +4,17 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<center>
 <div class="row">
     <div class="col-md-12">
         <center> <h2 style="font-family:'Times New Roman', Times, serif"> Nuevo Rol </h2></center>
-        <h5> Ingresa el Nombre del Nuevo Rol:</h5>
+        <h5 style="font-family:'Times New Roman', Times, serif"> Ingresa el Nombre del Nuevo Rol:</h5>
     </div>
 </div>
-
+</center>
 <center>
+    <hr />
+    <center>
     @using (Html.BeginForm("Form", "Rol", FormMethod.Post, new { enctype = "multipart/form-data" }))
     {
         <div class="row">
@@ -45,4 +48,5 @@
             </div>
         </div>
     }
+    </center>
 </center>

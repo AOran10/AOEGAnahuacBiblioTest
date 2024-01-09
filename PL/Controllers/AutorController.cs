@@ -82,6 +82,7 @@ namespace PL.Controllers
                 return memoryStream.ToArray();
             }
         }
+
         [HttpGet]
         public JsonResult GetAllAutor()
         {
