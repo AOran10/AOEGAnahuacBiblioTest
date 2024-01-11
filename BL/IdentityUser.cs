@@ -21,7 +21,9 @@ namespace BL
                                  select new
                                  {
                                      IdUser = user.Id,
-                                     UserName = user.UserName
+                                     UserName = user.UserName,
+                                     Email = user.Email,  // PRUEB JWT
+                                     PasswordHash = user.PasswordHash  // PRUEBA JWT
 
                                  }).ToList();
 
@@ -34,6 +36,8 @@ namespace BL
                             ML.IdentityUser usuario = new ML.IdentityUser();
                             usuario.IdUsuario = item.IdUser;
                             usuario.UserName = item.UserName;
+                            usuario.Email = item.Email;          //JWT 
+                            usuario.Password = item.PasswordHash;   //JWT
                             result.Objects.Add(usuario);
                         }
 
