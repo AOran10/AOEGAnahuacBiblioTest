@@ -9,13 +9,16 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <h2>Formulario Autor</h2>
-            <h5>Llena todos los campos y contesta para enviar el formulario</h5>
+            <center><h1 style="font-family:'Times New Roman'">Formulario Autor</h1></center>
+            <br />
+            <h5 style="font-family:Arial">Llena todos los campos y contesta para enviar el formulario</h5>
             <hr />
         </div>
-    </div>
+    </div> 
     @using (Html.BeginForm("Form", "Autor", FormMethod.Post, new { enctype = "multipart/form-data", @id = "form" }))
     {
+        <center>
+            <div class="container">
         <div class="row">
             <div class="col-md-12">
                 @Html.LabelFor(model => model.IdAutor, new { @class = "visually-hidden" })
@@ -23,7 +26,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-3">
+            <div class="col-md-5">
                 @Html.LabelFor(model => model.Nombre)
                 @Html.TextBoxFor(model => model.Nombre, new { @class = "form-control",@onkeypress = "return OnlyLetters(event)" , @id = "txtNombre" , @autocomplete = "password" })
                 <label id="lblErrorNombre"></label>
@@ -54,6 +57,8 @@
 
             </div>
         </div>
+        </div>
+        <center>
         <div class="row">
             <div class="col-md-2">
                 @* <input type="submit" class="btn btn-success" value="@ViewBag.Accion" /> *@
@@ -64,6 +69,30 @@
                 @Html.ActionLink(" Regresar", "GetAll", "Autor", new { area = "" }, new { @class = "btn btn-danger bi bi-backspace" })
             </div>
         </div>
+            </center>
+            <br />
+            <hr />
+        </center>
     }
+    
 </div>
+
+
+
+<style>
+    body {
+        color: #000;
+        overflow-x: hidden;
+        height: auto;
+        background: linear-gradient(#F1D8FB, #FCFAF2);
+        background-repeat: no-repeat;
+        padding: 0 !important;
+    }
+
+    .container {
+        padding-top: 20px;
+        padding-bottom: 120px;
+    }
+
+</style>
 

@@ -9,11 +9,14 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <h2>Formulario Editorial</h2>
-            <h5>Llena todos los campos y contesta para enviar el formulario</h5>
+            <center><h1 style="font-family: 'Times New Roman'">Formulario Editorial</h1></center>
+            <br />
+            <h5 style="font-family:Arial">Llena todos los campos y contesta para enviar el formulario</h5>
             <hr />
         </div>
     </div>
+
+    <center>
     @using (Html.BeginForm("Form", "Editorial", FormMethod.Post, new { enctype = "multipart/form-data", @id = "form" }))
     {
         <div class="row">
@@ -65,4 +68,23 @@
             </div>
         </div>
     }
+    </center>
 </div>
+<hr />
+
+<style>
+    body {
+        color: #000;
+        overflow-x: hidden;
+        height: auto;
+        background: linear-gradient(#EDFED1, #FCFAF2);
+        background-repeat: no-repeat;
+        padding: 0 !important;
+    }
+
+    .container {
+        padding-top: 20px;
+        padding-bottom: 120px;
+    }
+
+</style>

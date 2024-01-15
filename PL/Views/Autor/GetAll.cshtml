@@ -10,10 +10,10 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <h2>Autores</h2>
+            <center> <h1 style="font-family:'Times New Roman', Times, serif">Autores</h1></center>
         </div>
         <div class="col-md-12">
-            <h5>Añade, edita, elimina de la tabla</h5>
+            <h5 style="font-family:Arial">Añade, edita, elimina de la tabla</h5>
             <hr />
         </div>
     </div>
@@ -22,6 +22,28 @@
             @Html.ActionLink(" +", "Form", "Autor", null, new { @class = "btn btn-success bi-person-fill-add" })
         </div>
     </div>
+    <center>
     <div id="table_Container">
     </div>
+    </center>
 </div>
+<br />
+<hr />
+
+
+<style>
+    body {
+        color: #000;
+        overflow-x: hidden;
+        height: auto;
+        background: linear-gradient(#FBEA9D, #FCFAF2);
+        background-repeat: no-repeat;
+        padding: 0 !important;
+    }
+
+    .container {
+        padding-top: 20px;
+        padding-bottom: 120px;
+    }
+
+</style>
