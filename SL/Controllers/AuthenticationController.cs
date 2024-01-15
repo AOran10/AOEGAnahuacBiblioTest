@@ -8,55 +8,42 @@ using System.Text;
 using BL;
 using DL;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authorization;
 
 namespace SL.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]  // Todos los métodos del controlador
     public class AuthenticationController : ControllerBase
     {
         private readonly string secretKey;
 
-        public AuthenticationController(IConfiguration configuracion)
+        public AuthenticationController(IConfiguration configuracion)   // Acceso a AppSettings
         {
-            secretKey = configuracion.GetSection("settings").GetSection("secreKey").ToString(); 
+            secretKey = configuracion.GetSection("settings").GetSection("secretKey").ToString(); // Acceso a secretKey
         }
 
         [HttpPost]
         [Route("validar")]
-        public IActionResult Validar([FromBody] AspNetUser user)
-        {
-            if(user.Email == "" && user.PasswordHash == "")
-            {
-                var keyBytes = Encoding.ASCII.GetBytes(secretKey);
-                var claims = new ClaimsIdentity();
+        public static string GenerateTokenJwt(string UserName)
+        {    
+            var secretKey = new SymmetricSecurityKey(System.Text.Encoding.ASCII.GetBytes(UserName));
+            var signingCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256Signature);
 
-                // ORIGINAL:
-                // claims.AddClaims(new Claim(ClaimTypes.NameIdentifier, request.Email));
+            // create a claimsIdentity
+            ClaimsIdentity claimsIdentity = new ClaimsIdentity(new[] { new Claim(ClaimTypes.Email, UserName) });
 
-                _ = new List<Claim> {  // Prueba 
-                    new Claim(ClaimTypes.Email, user.Email)                   
-                    };
+            // create token to the user
+            var tokenHandler = new System.IdentityModel.Tokens.Jwt.JwtSecurityTokenHandler();
+            var jwtSecurityToken = tokenHandler.CreateJwtSecurityToken(              
+                subject: claimsIdentity,
+                notBefore: DateTime.UtcNow,
+                expires: DateTime.UtcNow.AddMinutes(1),
+                signingCredentials: signingCredentials);
 
-                var tokenDescriptor = new SecurityTokenDescriptor
-                {
-                    Subject = claims,
-                    Expires = DateTime.UtcNow.AddMinutes(1),   // Tiempo en que expira el token 
-                    SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(keyBytes), SecurityAlgorithms.HmacSha256Signature)
-                };
-
-                var tokenHeadler = new JwtSecurityTokenHandler();
-                var tokenConfig = tokenHeadler.CreateToken(tokenDescriptor);
-
-                string tokenCreado = tokenHeadler.WriteToken(tokenConfig);
-
-                return StatusCode(StatusCodes.Status200OK, new { token = tokenCreado });
-            }
-            else
-            {
-                return StatusCode(StatusCodes.Status401Unauthorized, new { token = "" });
-            }
-            
+            var jwtTokenString = tokenHandler.WriteToken(jwtSecurityToken);
+            return jwtTokenString;
         }
     }
 }

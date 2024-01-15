@@ -6,7 +6,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Configuracion JWT)
 
-builder.Configuration.AddJsonFile("appsettings.json");
+builder.Configuration.AddJsonFile("appsettings.json");    // Acceso a AppSettings
 var secretKey = builder.Configuration.GetSection("settings").GetSection("secretkey").ToString();
 var keyBytes = Encoding.UTF8.GetBytes(secretKey);
 
@@ -60,6 +60,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseAuthentication();  // Referenncia Autenticacion
+
+// app.UseMiddleware<JwtMiddleware>();
 
 app.UseCors("API");
 
