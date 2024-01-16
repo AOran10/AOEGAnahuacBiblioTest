@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.View;
+using RestSharp;
+using System.Text.Json;
 
 namespace PL.Controllers
 {
@@ -21,7 +23,7 @@ namespace PL.Controllers
         }
 
         [HttpGet]
-        public IActionResult Form(int? IdPrestamo)
+        public async Task<IActionResult> Form(int? IdPrestamo)
         {
             ML.Prestamo prestamo = new ML.Prestamo();
 
@@ -31,7 +33,7 @@ namespace PL.Controllers
 
             prestamo.IdentityUsers = new ML.IdentityUser();
             prestamo.Medio = new ML.Medio();
-            prestamo.Status = new ML.Status();
+            prestamo.EstatusPrestamo = new ML.EstatusPrestamo();
 
             if (IdPrestamo == 0 || IdPrestamo == null)
             {
@@ -40,16 +42,50 @@ namespace PL.Controllers
             else
             {
                 ViewBag.Accion = "Actualizar Prestamo";
-                ML.Result result = BL.Prestamo.PrestamoGetById(IdPrestamo.Value);
+                ML.Result result = await GetById(IdPrestamo.Value);
                 prestamo = (ML.Prestamo)result.Object;
             }
 
             //prestamo.IdentityUser.IdentityUsers = resultIdentityUsers.Objects;
             prestamo.Medio.Medios = resultMedio.Objects;
-            prestamo.Status.StatusList = resultStatus.Objects;
+            prestamo.EstatusPrestamo.EstatusPrestamoList = resultStatus.Objects;
             prestamo.IdentityUsers.IdentityUsers = resultUsers.Objects;
 
 			return View(prestamo);
+        }
+
+        public async Task<ML.Result> GetById(int id)
+        {
+            ML.Result result = new ML.Result();
+            try
+            {
+                var options = new RestClientOptions("http://localhost:5056/api/Prestamo/getbyid/" + id);
+                var client = new RestClient(options);
+                var request = new RestRequest("");
+                var response = await client.GetAsync(request);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    ML.Result preresult = System.Text.Json.JsonSerializer.Deserialize<ML.Result>(response.Content, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+
+
+                    string objparticular = preresult.Object.ToString();
+
+                    ML.Prestamo resultobject = System.Text.Json.JsonSerializer.Deserialize<ML.Prestamo>(objparticular, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+
+
+                    result = preresult;
+                    result.Object = resultobject;
+                }
+            }
+            catch (Exception ex)
+            {
+                result.Correct = false;
+                result.Ex = ex;
+                result.Message = ex.Message;
+                //throw;
+            }
+            return result;
         }
 
         [HttpPost]
@@ -99,11 +135,6 @@ namespace PL.Controllers
             return View("Modal");
         }
 
-        [HttpGet]
-        public JsonResult GetAllAutor()
-        {
-            ML.Result result = BL.Prestamo.PrestamoGetAll();
-            return Json(result);
-        }
+        
     }
 }

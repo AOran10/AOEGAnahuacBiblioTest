@@ -1,5 +1,4 @@
-﻿
-function OnlyLetters(event) {
+﻿function OnlyLetters(event) {
     var letra = event.key;
     var regexOnlyLetter = /^([a-zA-Z áéíóúüÁÉÍÓÚÜñÑ]{1,60}[\,\-\.]{0,1}[\s]{0,1}){1,3}$/;
     var txtNombre = document.getElementById("txtNombre");

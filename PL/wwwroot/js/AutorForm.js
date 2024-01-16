@@ -6,7 +6,6 @@
         URL.revokeObjectURL(output.src)//free memoryxd
     }
 }
-
 function OnlyLetters(event) {
     var letra = event.key;
     var regexOnlyLetter = /^([a-zA-Z áéíóúüÁÉÍÓÚÜñÑ]{1,60}[\,\-\.]{0,1}[\s]{0,1}){1,3}$/;
@@ -48,34 +47,64 @@ function SizeInfo() {
     }
 }
 
-function SendForm(event) {
+function getBase64(file) {
+    return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => resolve(reader.result);
+        reader.onerror = error => reject(error);
+    });
+}
+async function SendForm(event) {
     event.preventDefault();
 
     var form = document.getElementById("form");
-    var formData = new FormData(form);
+    var id = parseInt(form[0].value);
+    var verboSend = "";
+    var urlSend = "";
+
+    var myfile = form[3].files[0];
+    var imgModelo = form[4].value;
+
+
+    if (myfile != undefined) {
+
+        var preimg = await getBase64(myfile);
+
+        var imagenSend = preimg.replace(/^data:image\/[a-z]+;base64,/, "");
+    }
+    else {
+        var imagenSend = imgModelo;
+    }
+
+    if (id == 0) {
+        var verboSend = "POST";
+        var urlSend = "http://localhost:5056/api/Autor/add";
+    } else {
+        var verboSend = "PUT";
+        var urlSend = "http://localhost:5056/api/Autor/update";
+    }
+    
+
 
     var autor = {
-        IdAutor: parseInt(form[0].value),
-        Nombre: form[1].value,
-        InformacionAdicional: form[2].value,
-        Imagen: null,
-        Autores: ["string"]
-    };
-
-    formData.append('autor.IdAutor', autor.IdAutor);
-    formData.append('autor.Nombre', autor.Nombre);
-    formData.append('autor.InformacionAdicional', autor.InformacionAdicional);
-    formData.append('autor.Imagen', autor.Imagen);
+        "idAutor": id,
+        "nombre": form[1].value,
+        "informacionAdicional": form[2].value,
+        "imagen": imagenSend,
+        "autores": [
+            "string"
+        ]
+    }
 
 
-    formData.set('fuImagen', form[3].files[0]);
 
     $.ajax({
-        type: 'POST',
-        url: 'http://localhost:5083/Autor/Form',
-        data: formData,
-        processData: false,
-        contentType: false,
+        type: verboSend,
+        url: urlSend,
+        data: JSON.stringify(autor),
+        dataType: 'json',
+        contentType: "application/json; charset=uft-8",
         success: function (result) {
             alert("Formulario enviado correctamente");
             window.location.href = `/Autor/GetAll   `;

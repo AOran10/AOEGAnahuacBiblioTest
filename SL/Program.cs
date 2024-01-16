@@ -2,39 +2,11 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 
+var PermisoDeOrigenes = "_permisoDeOrigenes";//Yo lo cree
 var builder = WebApplication.CreateBuilder(args);
 
-// Configuracion JWT)
-
-builder.Configuration.AddJsonFile("appsettings.json");    // Acceso a AppSettings
-var secretKey = builder.Configuration.GetSection("settings").GetSection("secretkey").ToString();
-var keyBytes = Encoding.UTF8.GetBytes(secretKey);
-
-builder.Services.AddAuthentication(config =>
-{
-    config.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-    config.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-
-}).AddJwtBearer(config =>
-{
-    config.RequireHttpsMetadata = false;
-    config.SaveToken = true;
-    config.TokenValidationParameters = new TokenValidationParameters
-    {
-        ValidateIssuerSigningKey = true,
-        IssuerSigningKey = new SymmetricSecurityKey(keyBytes),
-        ValidateIssuer = false,
-        ValidateAudience = false
-    };
-});
-
-builder.Services.AddControllers();
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-
-//
-
-builder.Services.AddCors(options =>
+// Add services to the container.
+builder.Services.AddCors(options =>//Yo lo cree
 {
     options.AddPolicy("API",
         policy =>
@@ -42,8 +14,6 @@ builder.Services.AddCors(options =>
             policy.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
         });
 });
-
-// Add services to the container.
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -58,11 +28,6 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
-app.UseAuthentication();  // Referenncia Autenticacion
-
-// app.UseMiddleware<JwtMiddleware>();
-
 app.UseCors("API");
 
 app.UseAuthorization();

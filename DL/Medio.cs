@@ -29,9 +29,13 @@ public partial class Medio
 
     public byte[]? Imagen { get; set; }
 
+    public int? IdEstatus { get; set; }
+
     public virtual Autor? IdAutorNavigation { get; set; }
 
     public virtual Editorial? IdEditorialNavigation { get; set; }
+
+    public virtual EstatusMedio? IdEstatusNavigation { get; set; }
 
     public virtual Genero? IdGeneroNavigation { get; set; }
 

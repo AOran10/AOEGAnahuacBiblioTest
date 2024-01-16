@@ -1,15 +1,16 @@
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace SL.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class Editorial : Controller
+    public class Autor : ControllerBase
     {
         [HttpGet("getall")]
         public IActionResult GetAll()
         {
-            ML.Result result = BL.Editorial.EditorialGetAll();
+            ML.Result result = BL.Autor.AutorGetAll();
             if (result.Correct)
             {
                 return Ok(result);
@@ -20,10 +21,10 @@ namespace SL.Controllers
             }
         }
 
-        [HttpGet("getbyid/{idEditorial}")]
-        public IActionResult GetById(int idEditorial)
+        [HttpGet("getbyid/{idAutor}")]
+        public IActionResult GetById(int idAutor)
         {
-            ML.Result result = BL.Editorial.EditorialGetById(idEditorial);
+            ML.Result result = BL.Autor.AutorGetById(idAutor);
             if (result.Correct)
             {
                 return Ok(result);
@@ -34,10 +35,10 @@ namespace SL.Controllers
             }
         }
 
-        [HttpDelete("delete/{idEditorial}")]
-        public IActionResult Delete(int idEditorial)
+        [HttpDelete("delete/{idAutor}")]
+        public IActionResult Delete(int idAutor)
         {
-            ML.Result result = BL.Editorial.EditorialDelete(idEditorial);
+            ML.Result result = BL.Autor.AutorDelete(idAutor);
             if (result.Correct)
             {
                 return Ok(result);
@@ -49,9 +50,9 @@ namespace SL.Controllers
         }
 
         [HttpPost("add")]
-        public IActionResult Add([FromBody] ML.Editorial editorial)
+        public IActionResult Add([FromBody] ML.Autor autor)
         {
-            ML.Result result = BL.Editorial.EditorialAdd(editorial);
+            ML.Result result = BL.Autor.AutorAdd(autor);
             if (result.Correct)
             {
                 return Ok(result);
@@ -62,9 +63,9 @@ namespace SL.Controllers
             }
         }
         [HttpPut("update")]
-        public IActionResult Update([FromBody] ML.Editorial editorial)
+        public IActionResult Update([FromBody] ML.Autor autor)
         {
-            ML.Result result = BL.Editorial.EditorialUpdate(editorial);
+            ML.Result result = BL.Autor.AutorUpdate(autor);
             if (result.Correct)
             {
                 return Ok(result);
