@@ -7,7 +7,7 @@ public partial class Prestamo
 {
     public int IdPrestamo { get; set; }
 
-    public string? Id { get; set; }
+    public string? IdUsuario { get; set; }
 
     public int? IdMedio { get; set; }
 
@@ -15,11 +15,11 @@ public partial class Prestamo
 
     public DateTime? FechaDevolucion { get; set; }
 
-    public int? IdStatus { get; set; }
+    public int? IdEstatus { get; set; }
+
+    public virtual EstatusPrestamo? IdEstatusNavigation { get; set; }
 
     public virtual Medio? IdMedioNavigation { get; set; }
 
-    public virtual AspNetUser? IdNavigation { get; set; }
-
-    public virtual Status? IdStatusNavigation { get; set; }
+    public virtual AspNetUser? IdUsuarioNavigation { get; set; }
 }

@@ -7,7 +7,7 @@ function renderEditoriales() {
 
     var settings = {
         type: 'GET',
-        url: 'http://localhost:5083/Editorial/GetAllEditorial',
+        url: 'http://localhost:5056/api/Editorial/getall',
         contentType: "application/json; charset=uft-8",
     };
     $.ajax(settings).done(function (result) {
@@ -62,8 +62,19 @@ function GetById(id) {
 
 function Delete(id) {
 
-    if (confirm("¿Estas seguro de eliminar la editorial seleccionada?")) {
-        window.location.href = `/Editorial/Delete?idEditorial=${id}`;
+    if (confirm("¿Estas seguro de eliminar al editorial seleccionado?")) {
+
+        var settings = {
+            type: 'DELETE',
+            url: 'http://localhost:5056/api/Editorial/delete/' + id,
+            contentType: "application/json; charset=uft-8",
+        };
+        $.ajax(settings).done(function (result) {
+            alert('Se ha eliminado el autor');
+        }).fail(function (xhr, status, error) {
+            alert('Error al eliminar la editorial.' + error);
+
+        });
     };
 };
 

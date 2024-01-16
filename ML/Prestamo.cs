@@ -18,7 +18,7 @@ namespace ML
 
         public DateTime? FechaDevolucion { get; set; }
         
-        public ML.Status Status { get; set; }
+        public ML.EstatusPrestamo EstatusPrestamo { get; set; }
         public List<object> Prestamos { get; set; }
              
     }

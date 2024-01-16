@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ML;
+using RestSharp;
+using System.Text.Json;
 
 namespace PL.Controllers
 {
@@ -10,7 +12,7 @@ namespace PL.Controllers
             return View();
         }
         [HttpGet]
-        public IActionResult Form(int? IdAutor)
+        public async Task<IActionResult>  Form(int? IdAutor)
         {
             ML.Autor autor = new ML.Autor();
 
@@ -21,11 +23,48 @@ namespace PL.Controllers
             else
             {
                 ViewBag.Accion = "Actualizar Autor";
-                ML.Result result = BL.Autor.AutorGetById(IdAutor.Value);
+                ML.Result result = await GetById(IdAutor.Value);
                 autor = (ML.Autor)result.Object;
             }
             return View(autor);
         }
+
+
+        public async Task<ML.Result> GetById(int id)
+        {
+            ML.Result result = new ML.Result();
+            try
+            {
+                var options = new RestClientOptions("http://localhost:5056/api/Autor/getbyid/" + id);
+                var client = new RestClient(options);
+                var request = new RestRequest("");
+                var response = await client.GetAsync(request);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    ML.Result preresult = System.Text.Json.JsonSerializer.Deserialize<ML.Result>(response.Content, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+                   
+
+                    string objparticular = preresult.Object.ToString();
+
+                    ML.Autor resultobject = System.Text.Json.JsonSerializer.Deserialize<ML.Autor>(objparticular, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+                    
+
+                    result = preresult;
+                    result.Object = resultobject;
+                }
+            }
+            catch (Exception ex)
+            {
+                result.Correct = false;
+                result.Ex = ex;
+                result.Message = ex.Message;
+                //throw;
+            }
+            return result;
+        }
+
+
         [HttpPost]  
         public IActionResult Form(ML.Autor autor, IFormFile fuImagen)
         {

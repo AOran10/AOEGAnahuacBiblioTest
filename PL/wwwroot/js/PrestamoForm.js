@@ -7,32 +7,113 @@ function SendForm(event) {
 
     var form = document.getElementById("form");
     var formData = new FormData(form);
+    var id = parseInt(form[0].value);
+    var verboSend = "";
+    var urlSend = "";
+
+    fecha1 = form[3].value;
+    fecha2 = Date(form[3].value);
+
+    fechafinal = fecha1 + "T00:00:00";
 
     var prestamo = {
-        IdPrestamo: parseInt(form[0].value),
-        IdUsuario: form[1].value,
-        IdMedio: parseInt(form[2].value),
-        FechaPretamo: Date(form[3].value),
-        FechaDevolucion: Date(form[4].value),
-        IdStatus: parseInt(form[5].value)
+        "idPrestamo": id,
+        "identityUsers": {
+            "idUsuario": form[1].value,
+            "userName": "string",
+            "rol": {
+                "name": "string",
+                "roleId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+                "roles": [
+                    "string"
+                ]
+            },
+            "identityUsers": [
+                "string"
+            ]
+        },
+        "medio": {
+            "idMedio": parseInt(form[2].value),
+            "titulo": "h86oahGbWex99fOiyinEn52tzq76K j6ktocxH6O9oVzMnoqqh",
+            "tipoMedio": {
+                "idTipoMedio": 0,
+                "nombre": "PtKRCdboQqiYCFswEmmFGrML,zxsXsgFOnCznDjWnaEjREtgMA",
+                "descripcion": "string",
+                "tipoMedios": [
+                    "string"
+                ]
+            },
+            "editorial": {
+                "idEditorial": 0,
+                "nombre": "string",
+                "informacionAdicional": "string",
+                "imagen": "null",
+                "editoriales": [
+                    "string"
+                ]
+            },
+            "idioma": {
+                "idIdioma": 0,
+                "nombre": "WdwoXldvxJMFzPyVikpD. ",
+                "idiomas": [
+                    "string"
+                ]
+            },
+            "autor": {
+                "idAutor": 0,
+                "nombre": "string",
+                "informacionAdicional": "string",
+                "imagen": "null",
+                "autores": [
+                    "string"
+                ]
+            },
+            "genero": {
+                "idGenero": 0,
+                "nombre": "1hT0FvN54nIcDZ4ZWDPg1hoDu4591ZKtsPxHnuqxLmkoFGtoV5",
+                "descripcion": "ppdQGuklgZ3TACzzPOwnfJMBcXNfzLVfQkkZbuf647dF3v4uWxfCSySh",
+                "generos": [
+                    "string"
+                ]
+            },
+            "paginas": 0,
+            "publicacion": "2024-01-16T20:51:21.782Z",
+            "cantidadEjemplares": 0,
+            "cantidadEnPrestamo": 0,
+            "imagen": "null",
+            "medios": [
+                "string"
+            ]
+        },
+        "fechaPrestamo": "2024-01-16T20:51:21.782Z",
+        "fechaDevolucion": fechafinal,
+        "estatusPrestamo": {
+            "idEstatusPrestamo": 0,
+            "descripcion": "string",
+            "estatusPrestamoList": [
+                "string"
+            ]
+        },
+        "prestamos": [
+            "string"
+        ]
     };
 
-    formData.append('prestamo.IdPrestamo', prestamo.IdPrestamo);
-    formData.append('prestamo.IdentityUsers.IdUsuario'), prestamo.IdUsuario);
-    formData.append('prestamo.Medio.IdMedio'), prestamo.IdMedio);
-    formData.append('prestamo.FechaPrestamo'), prestamo.FechaPrestamo);
-    formData.append('prestamo.FechaDevolucion'), prestamo.FechaDevolucion);
-    formData.append('prestamo.Status.IdStatus'), prestamo.IdStatus);
 
-
-
+    if (id == 0) {
+        var verboSend = "POST";
+        var urlSend = "http://localhost:5056/api/Prestamo/add";
+    } else {
+        var verboSend = "PUT";
+        var urlSend = "http://localhost:5056/api/Prestamo/update";
+    }
 
     $.ajax({
-        type: 'POST',
-        url: 'http://localhost:5083/Prestamo/PrestamoGetAll',
-            data: fromData,
-        processData: false,
-        contentType: false,
+        type: verboSend,
+        url: urlSend,
+        data: JSON.stringify(prestamo),
+        dataType: 'json',
+        contentType: "application/json; charset=uft-8",
         success: function (result) {
             alert("Formulario enviado Correctamente");
             window.location.href = `/Prestamo/GetAll   `;

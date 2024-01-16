@@ -15,12 +15,12 @@ namespace ML
         [DisplayName("Nombre de la editorial:")]
         [Required]
         [StringLength(50, ErrorMessage = "Solo se aceptan menos de 50 caracteres")]
-        [RegularExpression(@"^[a-zA-Z0-9_.-]*$", ErrorMessage = "En este campo solo se aceptan Letras y numeros")]
+        //[RegularExpression(@"^[a-zA-Z0-9_.-]*$", ErrorMessage = "En este campo solo se aceptan Letras y numeros")]
         public string? Nombre { get; set; }
         [DisplayName("Información de la editorial:")]
         [Required]
         [StringLength(120, ErrorMessage = "Solo se aceptan menos de 120 caracteres")]
-        [RegularExpression(@"^[a-zA-Z0-9_.-]*$", ErrorMessage = "En este campo solo se aceptan Letras y numeros")]
+        //[RegularExpression(@"^[a-zA-Z0-9_.-]*$", ErrorMessage = "En este campo solo se aceptan Letras y numeros")]
         public string? InformacionAdicional { get; set; }
         [Required]
         [DisplayName("Imagen:")]

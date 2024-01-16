@@ -26,47 +26,20 @@
         </div>
         <div class="col-md-3">
             <label>Usuario:</label>
-            @Html.DropDownListFor(model => model.IdentityUsers, new SelectList(Model.IdentityUsers.IdentityUsers , "IdUsuario", "UserName"), "--Seleccione un Usuario--", htmlAttributes: new { @id = "ddlUsuario", @class = "form-control" })
+            @Html.DropDownListFor(model => model.IdentityUsers.IdUsuario, new SelectList(Model.IdentityUsers.IdentityUsers , "IdUsuario", "UserName"), "--Seleccione un Usuario--", htmlAttributes: new { @id = "ddlUsuario", @class = "form-control" })
         </div>
     </div>
-    <br />
-    <div class="col-md-3">
-        <label>Medio:</label>
-        @Html.DropDownListFor(model => model.Medio, new SelectList(Model.Medio.Medios, "IdMedio", "Titulo"), "--Seleccione un Medio--", htmlAttributes: new { @id = "ddlMedio", @class = "form-control" })
-    </div>
     <div class="row">
-        <main class="container">
-            <div class="row" style="padding-top: 100px">
-                <div class="col">
-                    <input data-date-format="dd/mm/yyyy" id="datepicker1">
-                </div>
+            <div class="col-md-3">
+                <label>Medio:</label>
+                @Html.DropDownListFor(model => model.Medio.IdMedio, new SelectList(Model.Medio.Medios, "IdMedio", "Titulo"), "--Seleccione un Medio--", htmlAttributes: new { @id = "ddlMedio", @class = "form-control" })
             </div>
-            <div class="row" style="padding-top: 100px">
-                <div class="col">
-                    <input data-date-format="dd/mm/yyyy" id="datepicker2">
-                </div>
-            </div>
-        </main>
     </div>
-    <br />
+
     <div class="row">
-        <div class="col-md-6">
-    <div class="dropdown">
-        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-            Status
-        </button>
-        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                    <li><a class="dropdown-item" href="#">Prestado</a></li>
-                    <li><a class="dropdown-item" href="#">Devuelto</a></li>
-                    <li><a class="dropdown-item" href="#">En Espera</a></li>
-                    <li><a class="dropdown-item" href="#">Perdido</a></li>
-                    <li><a class="dropdown-item" href="#">Reservado</a></li>
-                    <li><a class="dropdown-item" href="#">Disponible</a></li>
-                    <li><a class="dropdown-item" href="#">No Disponible</a></li>
-                    <li><a class="dropdown-item" href="#">Medio No Fisico</a></li>
-                    <li><a class="dropdown-item" href="#">No puede prestarse</a></li>
-        </ul>
-    </div>
+        <div class="col-md-3">
+            <label>Fecha Devolución</label>
+            <input data-date-format="yyyy-mm-dd" id="datepicker1">
         </div>
     </div>
     <br />
@@ -77,7 +50,7 @@
 
         </div>
         <div class="col-md-2">
-            @Html.ActionLink(" Regresar", "GetAll", "Autor", new { area = "" }, new { @class = "btn btn-danger bi bi-backspace" })
+            @Html.ActionLink(" Regresar", "GetAll", "Prestamo", new { area = "" }, new { @class = "btn btn-danger bi bi-backspace" })
         </div>
     </div>
 }
@@ -93,12 +66,6 @@
     });
     $('#datepicker1').datepicker("setDate", new Date());
 
-    $('#datepicker2').datepicker({
-        weekStart: 1,
-        daysOfWeekHighlighted: "6,0",
-        autoclose: true,
-        todayHighlight: true,
-    });
-    $('#datepicker2').datepicker("setDate", new Date());
+    
 
 </script>
