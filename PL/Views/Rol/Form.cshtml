@@ -4,14 +4,19 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<link rel="StyleSheet" href=~/css/Botones.css type="text/css">
+
+<center>
 <div class="row">
     <div class="col-md-12">
         <center> <h2 style="font-family:'Times New Roman', Times, serif"> Nuevo Rol </h2></center>
-        <h5> Ingresa el Nombre del Nuevo Rol:</h5>
+        <h5 style="font-family:'Times New Roman', Times, serif"> Ingresa el Nombre del Nuevo Rol:</h5>
     </div>
 </div>
-
+</center>
 <center>
+    <hr />
+    <center>
     @using (Html.BeginForm("Form", "Rol", FormMethod.Post, new { enctype = "multipart/form-data" }))
     {
         <div class="row">
@@ -45,4 +50,26 @@
             </div>
         </div>
     }
+    </center>
 </center>
+
+<footer>
+    <marquee style="font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif"> _.- Biblioteca Anahuac    ...   ¡ Siguenos en nuestras Redes Sociales ! -._    ...  Twitter: Anahuac_BiblioTest   </marquee>
+</footer>
+
+<style>
+    body {
+        color: #000;
+        overflow-x: hidden;
+        height: auto;
+        background-image: url(https://www.xtrafondos.com/wallpapers/resized/textura-vieja-hoja-de-papel-arrugada-cafe-3277.jpg?s=large);
+        background-size: cover;
+        background-repeat: no-repeat;
+        padding: 0 !important;
+    }
+
+    .container {
+        padding-top: 20px;
+        padding-bottom: 120px;
+    }
+</style>

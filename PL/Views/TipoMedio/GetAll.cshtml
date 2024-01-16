@@ -3,6 +3,9 @@
     ViewData["Title"] = "GetAll";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
+<link rel="StyleSheet" href=~/css/Botones.css type="text/css">
+
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="~/lib/jquery/dist/jquery.js" type=”text/javascript”></script>
 <script src="~/lib/jquery/dist/jquery.min.js" type=”text/javascript”></script>
@@ -10,18 +13,43 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <h2>Tipos de medio</h2>
+            <center>
+            <h2 style="font-family:'Times New Roman'"> .♦️ Tipos de medio ♦️. </h2>
+            </center>
         </div>
-        <div class="col-md-12">
-            <h5>Añade, edita, elimina de la tabla</h5>
+        <div class="col-md-12">          
+                <h5 style="font-family:Arial">Agrega, Edita y Elimina Registros de la Tabla</h5>                
             <hr />
         </div>
     </div>
     <div class="row">
         <div class="col-md-1 offset-md-11">
-            @Html.ActionLink(" +", "Form", "TipoMedio", null, new { @class = "btn btn-success bi-person-fill-add" })
+            @Html.ActionLink(" + ", "Form", "TipoMedio", null, new { @class = "btn btn-success bi bi-feather" })
         </div>
     </div>
     <div id="table_Container">
     </div>
 </div>
+
+<footer>
+    <marquee style="font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif"> _.- Biblioteca Anahuac    ...   ¡ Siguenos en nuestras Redes Sociales ! -._    ...  Twitter: Anahuac_BiblioTest   </marquee>
+</footer>
+
+<style>
+    body {
+        color: #000;
+        overflow-x: hidden;
+        height: auto;
+        /*  background: linear-gradient(#FBEA9D, #FCFAF2); */
+        background-image: url(https://img.freepik.com/fotos-premium/fila-libros-antiguos-estante-gris-fondo-escena-cuadrada_118047-9927.jpg?size=626&ext=jpg);
+        background-size: cover;
+        background-repeat: no-repeat;
+        padding: 0 !important;
+    }
+
+    .container {
+        padding-top: 20px;
+        padding-bottom: 120px;
+    }
+
+</style>

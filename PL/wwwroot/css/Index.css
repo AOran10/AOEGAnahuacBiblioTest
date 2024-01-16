@@ -1,0 +1,60 @@
+﻿
+
+body {
+    display:contents;
+    position:relative;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    font-family: 'Raleway', sans-serif;
+    background: linear-gradient(#D1FAED, #FCFAF2);
+    background-size:cover;
+}
+
+.text-container {
+    height: 120vh;
+    width: 120vw;
+    display:contents;
+    justify-content: left;
+    align-items: first baseline;
+    
+}
+
+    .text-container h1 {
+        margin: 0;
+        font-size: 200px;
+        color: rgba(225,225,225, .01);
+        background-image: url("https://media.istockphoto.com/photos/new-books-in-a-bookstore-picture-id171154358?k=6&m=171154358&s=612x612&w=0&h=_j3MNlooIrt_V1genLv2FwODFiGsnVBJlcaJ64yA91I=");
+        background-repeat: repeat;
+        -webkit-background-clip: text;
+        animation: animate 15s ease-in-out infinite;
+        text-align: center;
+        text-transform: uppercase;
+        font-weight: 900;
+        position: static;
+    }
+
+
+
+@keyframes animate {
+    0%, 100% {
+        background-position: left top;
+    }
+
+    25% {
+        background-position: right bottom;
+    }
+
+    50% {
+        background-position: left bottom;
+    }
+
+    75% {
+        background-position: right top;
+    }
+}
+
+
+
+
+

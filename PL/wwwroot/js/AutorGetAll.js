@@ -1,4 +1,6 @@
-﻿$(document).ready(function () {
+﻿<link rel="StyleSheet" href=~/css/Botones.css type = "text/css" >
+
+$(document).ready(function () {
     renderAutores();
 });
 
@@ -15,11 +17,11 @@ function renderAutores() {
                         <table class="table table-hover" id="tableAutores">
                         <thead>
                             <tr>
-                                <th>Editar</th>
-                                <th>Nombre</th>
-                                <th>Informacion</th>
-                                <th>Imagen</th>
-                                <th>Eliminar</th>
+                                <th class="text-white">Editar</th>
+                                <th class="text-white">Nombre</th>
+                                <th class="text-white">Informacion</th>
+                                <th class="text-white">Imagen</th>
+                                <th class="text-white">Eliminar</th>
                             </tr>
                         </thead>
                         <tbody>

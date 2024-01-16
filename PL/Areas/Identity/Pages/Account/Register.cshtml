@@ -1,7 +1,7 @@
 ﻿@page
 @model RegisterModel
 @{
-    ViewData["Title"] = "Register";
+    ViewData["Title"] = "Crear Una Cuenta Nueva...";
     Layout = "~/Areas/Identity/Pages/_AuthLayout.cshtml";
 }
 
@@ -30,11 +30,76 @@
                     <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
                 </div>
                 <br />
-                <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary">Registrarse</button>
+                <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-success">Registrarse</button>
             </form>
         </div>
     </div>
 </center>
+
+
+
+<style>
+    body {
+        color: #000;
+        overflow-x: hidden;
+        height: 100%;
+        background-image: url(https://www.solofondos.com/wp-content/uploads/2022/02/Library-many-books_1920x1080.jpg);
+        background-repeat: no-repeat;
+        padding: 0 !important;
+    }
+
+    .container {
+        padding-top: 20px;
+        padding-bottom: 120px;
+    }
+
+    Input {
+        padding: 5px 8px !important;
+        border: 1px solid #CFD8DC !important;
+        border-radius: 4px !important;
+        box-sizing: border-box;
+        background-color: #fff !important;
+        color: #000 !important;
+        font-size: 16px !important;
+        letter-spacing: 1px;
+        position: relative;
+    }
+
+        Input:focus {
+            -moz-box-shadow: none !important;
+            -webkit-box-shadow: none !important;
+            box-shadow: none !important;
+            border: 1px solid #1976D2 !important;
+            outline-width: 0;
+        }
+
+
+    .form-control-placeholder {
+        position: absolute;
+        top: -10px !important;
+        padding: 12px 2px 0 2px;
+        opacity: 0.5;
+    }
+
+    .form-control:focus + .form-control-placeholder,
+    .form-control:valid + .form-control-placeholder {
+        font-size: 95%;
+        top: 10px;
+        transform: translate3d(0, -100%, 0);
+        opacity: 1;
+    }
+
+    button:focus {
+        -moz-box-shadow: none !important;
+        -webkit-box-shadow: none !important;
+        box-shadow: none !important;
+        outline-width: 0;
+    }
+
+    }
+</style>
+
+
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />

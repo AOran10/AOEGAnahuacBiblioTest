@@ -1,4 +1,6 @@
-﻿$(document).ready(function () {
+﻿<link rel="StyleSheet" href=~/css/Botones.css type = "text/css" >
+
+$(document).ready(function () {
     renderPrestamos();
 });
 
@@ -29,7 +31,6 @@ function renderPrestamos() {
                   `;
 
         $("#table_Container").append(theadTemplate);
-                
 
         $.each(result.objects, function (i, prestamo) {
 

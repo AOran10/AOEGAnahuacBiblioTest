@@ -1,3 +1,7 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
+
 var PermisoDeOrigenes = "_permisoDeOrigenes";//Yo lo cree
 var builder = WebApplication.CreateBuilder(args);
 

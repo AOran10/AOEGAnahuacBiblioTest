@@ -1,5 +1,6 @@
 ﻿using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
+using ML;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -196,6 +197,11 @@ namespace BL
                 result.Ex = ex;
             }
             return result;
+        }
+
+        public static Result IdiomaGetById(int v, object idIdioma)
+        {
+            throw new NotImplementedException();
         }
     }
 }
