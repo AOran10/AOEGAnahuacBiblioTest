@@ -3,6 +3,9 @@
     ViewData["Title"] = "Form";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
+<link rel="StyleSheet" href=~/css/Botones.css type="text/css">
+
 <script src="~/lib/jquery/dist/jquery.js" type=”text/javascript”></script>
 <script src="~/lib/jquery/dist/jquery.min.js" type=”text/javascript”></script>
 <script type="text/javascript" src="~/js/AutorForm.js"></script>
@@ -66,16 +69,24 @@
                 
             </div>
             <div class="col-md-2">
-                @Html.ActionLink(" Regresar", "GetAll", "Autor", new { area = "" }, new { @class = "btn btn-danger bi bi-backspace" })
+                @Html.ActionLink(" Regresar", "GetAll", "Autor", new { area = "" }, new { @class = "btn btn-danger   bi bi-backspace" })
             </div>
         </div>
             </center>
             <br />
-            <hr />
+           <br />
+           <br />
         </center>
+        
     }
-    
+
 </div>
+
+<footer>
+    <marquee style="font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif"> _.- Biblioteca Anahuac    ...   ¡ Siguenos en nuestras Redes Sociales ! -._    ...  Twitter: Anahuac_BiblioTest   </marquee>
+</footer>
+
+
 
 
 
@@ -84,7 +95,9 @@
         color: #000;
         overflow-x: hidden;
         height: auto;
-        background: linear-gradient(#F1D8FB, #FCFAF2);
+        /* background: linear-gradient(#F1D8FB, #FCFAF2); */
+        background-image: url(https://img.freepik.com/fotos-premium/libro-abierto-sobre-amarillo-vibrante-celebrando-alfabetizacion_818261-7589.jpg);
+        background-size:cover;
         background-repeat: no-repeat;
         padding: 0 !important;
     }

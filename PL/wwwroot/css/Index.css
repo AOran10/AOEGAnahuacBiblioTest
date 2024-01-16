@@ -1,23 +1,23 @@
-﻿title {
-    margin: 0;
-    padding: 0;
-    font-family: 'Raleway', sans-serif;
-    background: linear-gradient(#D1FAED, #FCFAF2);
-}
+﻿
 
 body {
+    display:contents;
+    position:relative;
+    text-align: center;
     margin: 0;
     padding: 0;
     font-family: 'Raleway', sans-serif;
     background: linear-gradient(#D1FAED, #FCFAF2);
+    background-size:cover;
 }
 
 .text-container {
     height: 120vh;
     width: 120vw;
-    display: flex;
+    display:contents;
     justify-content: left;
     align-items: first baseline;
+    
 }
 
     .text-container h1 {
@@ -31,7 +31,10 @@ body {
         text-align: center;
         text-transform: uppercase;
         font-weight: 900;
+        position: static;
     }
+
+
 
 @keyframes animate {
     0%, 100% {
@@ -51,7 +54,7 @@ body {
     }
 }
 
-/*2da tipografia*/
+
 
 
 

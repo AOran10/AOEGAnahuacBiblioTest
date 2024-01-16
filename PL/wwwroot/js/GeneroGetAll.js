@@ -1,4 +1,6 @@
-﻿$(document).ready(function () {
+﻿<link rel="StyleSheet" href=~/css/Botones.css type = "text/css" >
+
+$(document).ready(function () {
     renderGeneros();
 });
 
