@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace SL.Controllers
@@ -8,6 +9,7 @@ namespace SL.Controllers
     public class Autor : ControllerBase
     {
         [HttpGet("getall")]
+        
         public IActionResult GetAll()
         {
             ML.Result result = BL.Autor.AutorGetAll();
@@ -50,6 +52,7 @@ namespace SL.Controllers
         }
 
         [HttpPost("add")]
+        [Authorize]
         public IActionResult Add([FromBody] ML.Autor autor)
         {
             ML.Result result = BL.Autor.AutorAdd(autor);
@@ -63,6 +66,7 @@ namespace SL.Controllers
             }
         }
         [HttpPut("update")]
+        [Authorize]
         public IActionResult Update([FromBody] ML.Autor autor)
         {
             ML.Result result = BL.Autor.AutorUpdate(autor);

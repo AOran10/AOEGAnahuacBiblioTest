@@ -16,10 +16,10 @@
                 await context.Response.WriteAsync("Api key was not provider"); 
                 return;
             }
+    
+            var appSettings = context.RequestServices.GetRequiredService<IConfiguration>();//Antes se llamaba AppSettings
 
-            var AppSettings = context.RequestServices.GetRequiredService<IConfiguration>();
-
-            var apikey = AppSettings.GetValue<string>(APIKEY);
+            var apikey = appSettings.GetValue<string>(APIKEY);
 
             if(!apikey.Equals(extractedApiKey))
             {

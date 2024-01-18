@@ -14,36 +14,46 @@ namespace SL.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]  // Todos los métodos del controlador
+    //[Authorize]  // Todos los métodos del controlador
     public class AuthenticationController : ControllerBase
     {
         private readonly string secretKey;
 
+        //inyección de dependencias
         public AuthenticationController(IConfiguration configuracion)   // Acceso a AppSettings
         {
             secretKey = configuracion.GetSection("settings").GetSection("secretKey").ToString(); // Acceso a secretKey
         }
 
         [HttpPost]
-        [Route("validar")]
-        public static string GenerateTokenJwt(string UserName)
-        {    
-            var secretKey = new SymmetricSecurityKey(System.Text.Encoding.ASCII.GetBytes(UserName));
-            var signingCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256Signature);
+        [Route("Validar")]
+        public IActionResult Validar(ML.IdentityUser request)
+        {
+            if (request.UserName == "calitimo55@gmail.com")
+            {
+                var keyBytes = Encoding.ASCII.GetBytes(secretKey);
+                var claims = new ClaimsIdentity();
 
-            // create a claimsIdentity
-            ClaimsIdentity claimsIdentity = new ClaimsIdentity(new[] { new Claim(ClaimTypes.Email, UserName) });
+                claims.AddClaim(new Claim(ClaimTypes.NameIdentifier, request.Email));
 
-            // create token to the user
-            var tokenHandler = new System.IdentityModel.Tokens.Jwt.JwtSecurityTokenHandler();
-            var jwtSecurityToken = tokenHandler.CreateJwtSecurityToken(              
-                subject: claimsIdentity,
-                notBefore: DateTime.UtcNow,
-                expires: DateTime.UtcNow.AddMinutes(1),
-                signingCredentials: signingCredentials);
+                var tokenDescriptor = new SecurityTokenDescriptor
+                {
+                    Subject = claims,
+                    Expires = DateTime.UtcNow.AddMinutes(2),
+                    SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(keyBytes), SecurityAlgorithms.HmacSha256Signature)
+                };
 
-            var jwtTokenString = tokenHandler.WriteToken(jwtSecurityToken);
-            return jwtTokenString;
+                var tokenHandler = new JwtSecurityTokenHandler();
+                var tokenConfig = tokenHandler.CreateToken(tokenDescriptor);
+
+                string tokenCreado = tokenHandler.WriteToken(tokenConfig);
+
+                return StatusCode(StatusCodes.Status200OK, new { token = tokenCreado });
+            }
+            else
+            {
+                return StatusCode(StatusCodes.Status401Unauthorized, new { token = "" , message = "La autentificación ha fallado"} );
+            }
         }
     }
 }
