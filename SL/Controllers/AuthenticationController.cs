@@ -25,14 +25,16 @@ namespace SL.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         [Route("validar")]
-        public static string GenerateTokenJwt(string UserName)
+        public static string GenerateTokenJwt(string UserName, string Password)
         {    
             var secretKey = new SymmetricSecurityKey(System.Text.Encoding.ASCII.GetBytes(UserName));
             var signingCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256Signature);
 
             // create a claimsIdentity
             ClaimsIdentity claimsIdentity = new ClaimsIdentity(new[] { new Claim(ClaimTypes.Email, UserName) });
+            
 
             // create token to the user
             var tokenHandler = new System.IdentityModel.Tokens.Jwt.JwtSecurityTokenHandler();

@@ -5,6 +5,8 @@
 
 @* Librerias *@
 
+<link rel="StyleSheet" href=~/css/Botones.css type="text/css">
+
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="~/lib/jquery/dist/jquery.js" type=”text/javascript”></script>
 <script src="~/lib/jquery/dist/jquery.min.js" type=”text/javascript”></script>
@@ -15,14 +17,16 @@
 <div class="container">
 	<div class="row">
 		<div class="col col-md-12">
-			<h1>Todos los Prestamos</h1>
+			<center>
+				<h1 style="font-family:'Times New Roman', Times, serif"> .♦️ Todos los Prestamos ♦️. </h1>
+			</center>
 		</div>
+		<br />
 		<div class="col col-md-12">
-			<h5>Agrega, Actualiza o Elimina el Registro que desees de la Tabla </h5>
+			<h5 style="font-family:'Arial Rounded MT'">Agrega, Actualiza o Elimina el Registro que desees de la Tabla </h5>
 		</div>
 	</div>
 </div>
-<br />
 <div class="row">
 	<div class="col-md-1 offset-md-11">
 		@Html.ActionLink(" +", "Form", "Prestamo", null, new { @class = "btn btn-success bi bi-book" })
@@ -32,4 +36,20 @@
 </div>
 
 
+<style>
+	body {
+		color: #000;
+		overflow-x: hidden;
+		height: auto;
+		background-image: url(https://blog-static.mamikos.com/wp-content/uploads/2022/11/10-Contoh-Paragraf-Deduktif-dan-Induktif-Berbagai-Keperluan-Lengkap.jpg);
+		background-size: cover;
+		background-repeat: no-repeat;
+		padding: 0 !important;
+	}
 
+	.container {
+		padding-top: 20px;
+		padding-bottom: 120px;
+	}
+
+</style>

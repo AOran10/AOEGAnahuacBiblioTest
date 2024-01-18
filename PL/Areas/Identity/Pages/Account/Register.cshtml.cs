@@ -157,9 +157,12 @@ namespace PL.Areas.Identity.Pages.Account
                                         <div style='background-color: black; height: 20px;'></div>
                                         <div style='padding: 20px;'>
                                             <h3 style='color: #333333;'> Digis Biblioteca </h3>
-                                            <p style='color: #666666;'>Para Activar tu Cuenta y disfrutar de los Servicios que tenemos para ti, da Click en el botón de Confirmar:</p>
+                                            <p style='color: #666666;'> ¡ Hola !, Te damos la Bienvenida. Para Activar tu Cuenta y disfrutar de los Servicios que tenemos para ti, da Click en el botón de Confirmar:</p>
                                             <a href='" + callbackUrl + @"' style='display: inline-block; padding: 10px 20px; background-color: #47CA21; color: #ffffff; text-decoration: none; border-radius: 5px;'>Confirmar</a>
-                                        </div>
+<center>
+<img src=""https://th.bing.com/th/id/R.42f99ebae55ba6cfdb6ab61dff42fcf4?rik=Q1RvaYQdwHgWEw&riu=http%3a%2f%2fwww.archivoliterariochivilcoy.com%2fwp-content%2fuploads%2f2018%2f01%2fimagenes-de-libros-en-caricatura-1.jpg&ehk=TEAR14RQN6KGWI7AZMeN6HpxR4ZUZwWJU96PJ19hRnI%3d&risl=&pid=ImgRaw&r=0"" style=""  width:100px; height:100px; "" />
+</center>                                    
+</div>
                                     </div>
                                 </body>
                                 </html>",

@@ -3,6 +3,9 @@
     ViewData["Title"] = "Form";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
+<link rel="StyleSheet" href=~/css/Botones.css type="text/css">
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
@@ -10,10 +13,13 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <h1>Prestamos</h1>
+            <center>
+                <h1 style="font-family:'Times New Roman', Times, serif"> Prestamos </h1>
+            </center>
         </div>
+        <br />
         <div class="col-md-12">
-            <h5>Para un Registro Nuevo, llena los campos del formulario</h5>
+            <h5 style="font-family:'Arial Rounded MT'">Para un Registro Nuevo, llena los Campos del siguiente formulario...</h5>
         </div>
     </div>
 
@@ -29,13 +35,14 @@
             @Html.DropDownListFor(model => model.IdentityUsers.IdUsuario, new SelectList(Model.IdentityUsers.IdentityUsers , "IdUsuario", "UserName"), "--Seleccione un Usuario--", htmlAttributes: new { @id = "ddlUsuario", @class = "form-control" })
         </div>
     </div>
+    <br />
     <div class="row">
             <div class="col-md-3">
                 <label>Medio:</label>
                 @Html.DropDownListFor(model => model.Medio.IdMedio, new SelectList(Model.Medio.Medios, "IdMedio", "Titulo"), "--Seleccione un Medio--", htmlAttributes: new { @id = "ddlMedio", @class = "form-control" })
             </div>
     </div>
-
+    <br />
     <div class="row">
         <div class="col-md-3">
             <label>Fecha Devolución</label>
@@ -55,6 +62,26 @@
     </div>
 }
 </div>
+
+
+<style>
+    body {
+        color: #000;
+        overflow-x: hidden;
+        height: auto;
+        background-image: url(https://img.freepik.com/fotos-premium/libro-abierto-sobre-amarillo-vibrante-celebrando-alfabetizacion_818261-7589.jpg);
+        background-size: cover;
+        background-repeat: no-repeat;
+        padding: 0 !important;
+    }
+
+    .container {
+        padding-top: 20px;
+        padding-bottom: 120px;
+    }
+
+</style>
+
 
 <script type="text/javascript">
 

@@ -14,6 +14,7 @@
                 <form id="account" method="post">
                     <Center>
                         <hr />
+                        <br />
                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                         <div class="form-floating">
                             <input asp-for="Input.Email" class="form-control" autocomplete="off" aria-required="true" />
@@ -34,11 +35,14 @@
                                     @Html.DisplayNameFor(m => m.Input.RememberMe)
                                 </label>
                             </div>
+                            <br />
                         </div>
                     </Center>
                     <div>
                         <button id="login-submit" type="submit" class="w-100 btn btn-lg btn-success"> Ingresar </button>
                     </div>
+                    <br />
+                    <br />
                 </form>
             </section>
         </div>
