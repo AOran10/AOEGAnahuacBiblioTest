@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using RestSharp;
+using System.Text.Json;
 
 namespace PL.Controllers
 {
@@ -25,6 +27,45 @@ namespace PL.Controllers
             }
             return View(idioma);
         }
+
+        // RestSharp Idiomas
+
+        public async Task<ML.Result> GetById(int id)
+        {
+            ML.Result result = new ML.Result();
+
+            try
+            {
+                var options = new RestClientOptions("http://localhost:5056/api/Idioma/getbyid/" + id);
+                var client = new RestClient(options);
+                var request = new RestRequest("");
+                var response = await client.GetAsync(request);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    ML.Result preresult = System.Text.Json.JsonSerializer.Deserialize<ML.Result>(response.Content, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+
+                    string objparticular = preresult.Object.ToString();
+
+                    ML.Idioma resultobject = System.Text.Json.JsonSerializer.Deserialize<ML.Idioma>(objparticular, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+
+                    result = preresult;
+                    result.Object = resultobject;
+                }
+            }
+            catch (Exception ex)
+            {
+                result.Correct = false;
+                result.Ex = ex;
+                result.Message = ex.Message;
+
+            }
+
+            return result;
+        }
+
+        //
+
         [HttpPost]
         public IActionResult Form(ML.Idioma idioma)
         {
