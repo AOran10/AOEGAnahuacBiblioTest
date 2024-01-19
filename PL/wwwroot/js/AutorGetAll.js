@@ -1,8 +1,8 @@
 ﻿
 $(document).ready(function () {
     renderAutores();
+    //nuBank();
 });
-
 function renderAutores() {
     $("#table_Container").empty();
 
@@ -58,7 +58,57 @@ function renderAutores() {
 }
 
 function GetById(id) {
-    window.location.href = `/Autor/Form?idAutor=${id}`;
+
+    var inputEscrito = prompt("Debes ingresar tu contraseña primero para esto");
+    //title="Manage"
+    var emailInput = document.getElementById("emailUserLayout");
+    var emailPre = emailInput.text;    
+
+    let emailUser = emailPre.substring(6, emailPre.length - 1);
+
+    if (emailUser == inputEscrito) {
+        var usuario = {
+            "idUsuario": "string",
+            "userName": "string",
+            "password": "string",
+            "email": inputEscrito,
+            "rol": {
+                "name": "string",
+                "roleId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+                "roles": [
+                    "string"
+                ]
+            },
+            "identityUsers": [
+                "string"
+            ]
+        }
+        
+        $.ajax({
+            type: "POST",
+            url: "http://localhost:5056/api/Authentication/Validar",
+            data: JSON.stringify(usuario),
+            dataType: 'json',
+            contentType: "application/json; charset=uft-8",
+            success: function (result) {
+                alert("Se ha autentificado, tienes 2 minutos para modificar el registro");
+                //var ready = localStorage.getItem('jwtToken');
+                var tokenCreado = result.token;
+                localStorage.setItem('token', tokenCreado) 
+
+                window.location.href = `/Autor/Form?idAutor=${id}`;
+                //window.location.href = `/Autor/Form?idAutor=${id}&token=${tokenCreado}`;
+
+                
+            },
+            error: function (xhr, status, error) {
+                alert('No se pudo autentificar' + error);
+            }
+        });
+    }
+    else {
+        alert('El correo no coincide');
+    }
 }
 
 function Delete(id) {
@@ -79,3 +129,26 @@ function Delete(id) {
     };
 };
 
+
+
+function nuBank() {
+    var cantidadDinero = prompt("Digita la cantidad del dinero");
+    var cantidadDineroFijo = cantidadDinero;
+
+    var dias = 365;
+    var taza = 0.16;
+
+
+    var tazageneral = parseFloat(cantidadDinero - cantidadDineroFijo).toFixed(2);
+    var tazadiaria = parseFloat(tazageneral).toFixed(3);;
+
+    for (i = 1; i <= dias; i++) {
+        gananciaAlDia = cantidadDinero * tazadiaria;
+        cantidadDinero = cantidadDinero + gananciaAlDia
+    }
+
+    var total = parseFloat(cantidadDinero).toFixed(2);
+    var gananciaTotal = parseFloat(cantidadDinero - cantidadDineroFijo).toFixed(2);
+
+    alert("Si empiezas con " + cantidadDineroFijo + " terminas con " + total + " pesos en 1 año con ganancia de " + gananciaTotal);
+}

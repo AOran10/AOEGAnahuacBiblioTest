@@ -9,6 +9,7 @@ using BL;
 using DL;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authorization;
+using ML;
 
 namespace SL.Controllers
 {
@@ -29,12 +30,15 @@ namespace SL.Controllers
         [Route("Validar")]
         public IActionResult Validar(ML.IdentityUser request)
         {
-            if (request.UserName == "calitimo55@gmail.com")
+
+            ML.Result result = BL.IdentityUser.ConfirmPassword(request);
+
+            if (result.Correct)
             {
                 var keyBytes = Encoding.ASCII.GetBytes(secretKey);
                 var claims = new ClaimsIdentity();
 
-                claims.AddClaim(new Claim(ClaimTypes.NameIdentifier, request.Email));
+                claims.AddClaim(new Claim(ClaimTypes.NameIdentifier, request.Email));//aqui tambien venía la contraseña sin hashear
 
                 var tokenDescriptor = new SecurityTokenDescriptor
                 {
@@ -51,7 +55,7 @@ namespace SL.Controllers
                 return StatusCode(StatusCodes.Status200OK, new { token = tokenCreado });
             }
             else
-            {
+                {
                 return StatusCode(StatusCodes.Status401Unauthorized, new { token = "" , message = "La autentificación ha fallado"} );
             }
         }

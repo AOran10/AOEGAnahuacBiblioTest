@@ -57,6 +57,7 @@ function getBase64(file) {
 }
 async function SendForm(event) {
     event.preventDefault();
+    var token = localStorage.getItem('token');
 
     var form = document.getElementById("form");
     var id = parseInt(form[0].value);
@@ -97,11 +98,17 @@ async function SendForm(event) {
         ]
     }
 
-
+    //var autorizacion = { "Authorization": "Bearer" + token }
 
     $.ajax({
         type: verboSend,
         url: urlSend,
+        //Authorization: token,
+        headers: {
+            accept: 'application/json',
+            'content-type': 'application/json',
+            Authorization: `Bearer ${token}`
+        },
         data: JSON.stringify(autor),
         dataType: 'json',
         contentType: "application/json; charset=uft-8",

@@ -13,12 +13,12 @@ function renderIdiomas() {
     };
     $.ajax(settings).done(function (result) {
         var theadTemplate = `
-                        <table class="table table-hover" id="tableIdiomas">
+                        <table class="table table-hover text-white" id="tableIdiomas">
                         <thead>
                             <tr>
-                                <th>Editar</th>
-                                <th>Nombre</th>
-                                <th>Eliminar</th>
+                                <th class="text-white">Editar</th>
+                                <th class="text-white">Nombre</th>
+                                <th class="text-white">Eliminar</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -30,9 +30,9 @@ function renderIdiomas() {
             var trowTemplate =
                 '<tr>'
 
-                + '<td class="text-center"> <button class="btn btn-info" onclick="GetById(' + idioma.idIdioma + ')"><span class="bi bi-pencil-square"></span></button></td>'
-                + "<td class='text-center'>" + idioma.nombre + "</td>"
-                + '<td class="text-center"><button class="btn btn-danger " onclick="Delete(' + idioma.idIdioma + ')" ><span class="bi bi-trash-fill"></span></button></td>'
+                + '<td class="text-center text-white"> <button class="btn btn-info" onclick="GetById(' + idioma.idIdioma + ')"><span class="bi bi-pencil-square"></span></button></td>'
+                + "<td class='text-center text-white'>" + idioma.nombre + "</td>"
+                + '<td class="text-center text-white"><button class="btn btn-danger " onclick="Delete(' + idioma.idIdioma + ')" ><span class="bi bi-trash-fill"></span></button></td>'
 
                 + "</tr>";
             //$("#table_Container").append(trowTemplate);

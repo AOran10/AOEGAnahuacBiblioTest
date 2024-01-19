@@ -1,11 +1,13 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Web.Http.Cors;
 
 namespace SL.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+
     public class Autor : ControllerBase
     {
         [HttpGet("getall")]
@@ -53,6 +55,7 @@ namespace SL.Controllers
 
         [HttpPost("add")]
         [Authorize]
+        [EnableCors(origins: "*", headers: "*", methods: "POST")]
         public IActionResult Add([FromBody] ML.Autor autor)
         {
             ML.Result result = BL.Autor.AutorAdd(autor);
