@@ -4,9 +4,9 @@
 
 function SendForm(event) {
     event.preventDefault();
-
+    var token = localStorage.getItem('token');
     var form = document.getElementById("form");
-    var formData = new FormData(form);
+
     var id = parseInt(form[0].value);
     var verboSend = "";
     var urlSend = "";
@@ -111,6 +111,11 @@ function SendForm(event) {
     $.ajax({
         type: verboSend,
         url: urlSend,
+        headers: {
+            accept: 'application/json',
+            'content-type': 'application/json',
+            Authorization: `Bearer ${token}`
+        },
         data: JSON.stringify(prestamo),
         dataType: 'json',
         contentType: "application/json; charset=uft-8",

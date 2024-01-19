@@ -1,4 +1,6 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Web.Http.Cors;
 
 namespace SL.Controllers
 {
@@ -49,6 +51,7 @@ namespace SL.Controllers
         }
 
         [HttpPost("add")]
+        [Authorize]
         public IActionResult Add([FromBody] ML.Editorial editorial)
         {
             ML.Result result = BL.Editorial.EditorialAdd(editorial);
@@ -62,6 +65,7 @@ namespace SL.Controllers
             }
         }
         [HttpPut("update")]
+        [Authorize]
         public IActionResult Update([FromBody] ML.Editorial editorial)
         {
             ML.Result result = BL.Editorial.EditorialUpdate(editorial);

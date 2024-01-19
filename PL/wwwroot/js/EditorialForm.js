@@ -45,7 +45,7 @@ function getBase64(file) {
 }
 async function SendForm(event) {
     event.preventDefault();
-
+    var token = localStorage.getItem('token');
     var form = document.getElementById("form");
     var id = parseInt(form[0].value);
     var verboSend = "";
@@ -89,6 +89,11 @@ async function SendForm(event) {
         type: verboSend,
         url: urlSend,
         data: JSON.stringify(editorial),
+        headers: {
+            accept: 'application/json',
+            'content-type': 'application/json',
+            Authorization: `Bearer ${token}`
+        },
         dataType: 'json',
         contentType: "application/json; charset=uft-8",
         success: function (result) {

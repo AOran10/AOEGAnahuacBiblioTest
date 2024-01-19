@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Cors;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using ML;
 
@@ -47,6 +48,7 @@ namespace SL.Controllers
         // POST api/<TipoMedio>
         [EnableCors("API")]
         [HttpPost("Add")]
+        [Authorize]
         public IActionResult Add(ML.TipoMedio tipoMedio)
         {
             ML.Result result = BL.TipoMedio.TipoMedioAdd(tipoMedio);
@@ -64,6 +66,7 @@ namespace SL.Controllers
         // PUT api/<TipoMedio>/5
         [EnableCors("API")]
         [HttpPut("Update")]
+        [Authorize]
         public IActionResult Update(ML.TipoMedio tipoMedio)
         {
             ML.Result result = BL.TipoMedio.TipoMedioUpdate(tipoMedio);

@@ -61,10 +61,59 @@ function renderPrestamos() {
 
         });
     }
-function GetById(id) {
-    window.location.href = `/Prestamo/Form?IdPrestamo=${id}`;
-}
 
+function GetById(id) {
+
+    var inputEscrito = prompt("Debes ingresar tu contraseña primero para esto");
+    //title="Manage"
+    var emailInput = document.getElementById("emailUserLayout");
+    var emailPre = emailInput.text;
+
+    let emailUser = emailPre.substring(6, emailPre.length - 1);
+
+    if (emailUser == inputEscrito) {
+        var usuario = {
+            "idUsuario": "string",
+            "userName": "string",
+            "password": "string",
+            "email": inputEscrito,
+            "rol": {
+                "name": "string",
+                "roleId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+                "roles": [
+                    "string"
+                ]
+            },
+            "identityUsers": [
+                "string"
+            ]
+        }
+
+        $.ajax({
+            type: "POST",
+            url: "http://localhost:5056/api/Authentication/Validar",
+            data: JSON.stringify(usuario),
+            dataType: 'json',
+            contentType: "application/json; charset=uft-8",
+            success: function (result) {
+                alert("Se ha autentificado, tienes 2 minutos para modificar el registro");
+
+                var tokenCreado = result.token;
+                localStorage.setItem('token', tokenCreado)
+
+                window.location.href = `/Prestamo/Form?IdPrestamo=${id}`;
+
+
+            },
+            error: function (xhr, status, error) {
+                alert('No se pudo autentificar' + error);
+            }
+        });
+    }
+    else {
+        alert('El correo no coincide');
+    }
+}
 function Delete(id) {
 
     
@@ -76,7 +125,7 @@ function Delete(id) {
             contentType: "application/json; charset=uft-8",
         };
         $.ajax(settings).done(function (result) {
-            alert('Se ha eliminado el autor');
+            alert('Se ha finalizado');
         }).fail(function (xhr, status, error) {
             alert('Error al eliminar el prestamo.' + error);
 

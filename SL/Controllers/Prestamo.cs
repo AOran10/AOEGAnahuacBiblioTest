@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace SL.Controllers
@@ -51,6 +52,7 @@ namespace SL.Controllers
     }
 
     [HttpPost("add")]
+    [Authorize]
     public IActionResult Add([FromBody] ML.Prestamo prestamo)
     {
         ML.Result result = BL.Prestamo.PrestamoAdd(prestamo);
@@ -64,6 +66,7 @@ namespace SL.Controllers
         }
     }
     [HttpPut("update")]
+    [Authorize]
     public IActionResult Update([FromBody] ML.Prestamo prestamo)
     {
         ML.Result result = BL.Prestamo.PrestamoUpdate(prestamo);

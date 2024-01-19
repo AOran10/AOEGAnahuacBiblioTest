@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Cors;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.RateLimiting;
 using ML;
@@ -48,6 +49,7 @@ namespace SL.Controllers
         // POST api/<IdiomaController>
         [EnableCors("API")]
         [HttpPost("Add")]
+        [Authorize]
         public IActionResult Add(ML.Idioma idioma)
         {
             ML.Result result = BL.Idioma.IdiomaAdd(idioma);
@@ -66,6 +68,7 @@ namespace SL.Controllers
         // PUT api/<IdiomaController>/5
         [EnableCors("API")]
         [HttpPut("Update")]
+        [Authorize]
         public IActionResult Update(ML.Idioma idioma)
         {
             ML.Result result = BL.Idioma.IdiomaUpdate(idioma);
