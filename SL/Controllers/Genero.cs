@@ -31,7 +31,7 @@ namespace SL.Controllers
         // GET api/<Genero>/5
        
         [EnableCors("API")]
-        [HttpGet("GetBiId")]
+        [HttpGet("GetBiId/{IdGenero}")]
         public IActionResult GetById(int IdGenero) 
         {
             ML.Result result = BL.Genero.GeneroGetById(IdGenero);

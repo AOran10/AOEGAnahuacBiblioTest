@@ -33,42 +33,9 @@ function renderMedios() {
                         <tbody>
                     `;
         $("#table_Container").append(theadTemplate);
-        $.each(result.objects, function (i, medio) {
-            var idMedio = medio.idMedio;
-            var Titulo = medio.titulo;
-            var TipoMedio = medio.tipoMedio.nombre;
-            var Editorial = medio.editorial.nombre;
-            var Idioma = medio.idioma.nombre;
-            var Autor = medio.autor.nombre;
-            var Genero = medio.genero.nombre;
-            var CantidadEjemplares = medio.cantidadEjemplares;
-            var CantidadEnPrestamo = medio.cantidadEnPrestamo;
-
+        $.each(result.objects, function (i, medio) {         
             var Imagen = medio.imagen != null ? `data:image/png;base64,${medio.imagen}` : 'https://th.bing.com/th/id/OIP.dhBwcZT_mUoZpOBSNsjHzgAAAA?rs=1&pid=ImgDetMain';
 
-            var fila = `
-                        <tr>
-                                    <td class="text-center"><a class="btn btn-primary bi bi-pencil-fill " href="@Url.Action("Form", "MediaAdmin", new {IdMedio = ${idMedio}})"><i class=""></i></a></td>
-
-                                    <td>${idMedio}</td>
-                                    <td>${Titulo}</td>
-                                    <td>${TipoMedio}</td>
-                                    <td>${Editorial}</td>
-                                    <td>${Idioma}</td>
-                                    <td>${Autor}</td>
-                                    <td>${Genero}</td>
-                                    <td>${CantidadEjemplares}</td>
-                                    <td>${CantidadEnPrestamo}</td>
-                                    
-                                    <td>
-                                            <img ${Imagen} id="imgMedio" style="  width:100px; height:100px; " />
-                                        
-                                    </td>
-                                    <td class="text-center">
-                                        <a class="btn btn-danger bi bi-trash" onclick="return confirm('¿Estas seguro de eliminar este medio?');" href="@Url.Action("Delete", "MediaAdmin", new {IdMedio = ${idMedio}})"><i class=""></i></a>
-                                    </td>
-                                </tr>
-                    `;
             var trowTemplate =
                 '<tr>'
 

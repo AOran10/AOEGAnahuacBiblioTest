@@ -29,7 +29,8 @@ namespace SL.Controllers
         }
 
         // GET api/<IdiomaController>/5
-        [HttpGet("GetById")]
+        [EnableCors("API")]
+        [HttpGet("GetById/{IdIdioma}")]
         public IActionResult GetById(int IdIdioma)
         {
             ML.Result result = BL.Idioma.IdiomaGetById(IdIdioma);

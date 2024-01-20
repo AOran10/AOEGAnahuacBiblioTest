@@ -29,7 +29,7 @@ namespace SL.Controllers
 
         // GET api/<TipoMedio>/5
         [EnableCors("API")]
-        [HttpGet("GetById")]
+        [HttpGet("GetById/{IdTipoMedio}")]
         public IActionResult GetById(int IdTipoMedio)
         {
             ML.Result result = BL.TipoMedio.TipoMedioGetById(IdTipoMedio);
