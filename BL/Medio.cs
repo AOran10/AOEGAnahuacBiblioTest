@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -280,6 +281,7 @@ namespace BL
 
                         medio.Paginas = item.Paginas.Value;
                         medio.Publicacion = item.Publicacion.Value;
+                        medio.PublicacionFormated = item.Publicacion.Value.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture);
                         medio.CantidadEjemplares = item.CantidadEjemplares.Value;
                         medio.CantidadEnPrestamo = item.CantidadEnPrestamo.Value;
                         medio.Imagen = item.Imagen;

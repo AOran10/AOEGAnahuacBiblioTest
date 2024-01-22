@@ -40,7 +40,7 @@
                         </div>
                         <div class="col-md-6">
                             @Html.LabelFor(model => model.Publicacion)
-                            @Html.TextBoxFor(model => model.Publicacion, new { @class = "form-control", @type = "date" })
+                            @Html.TextBoxFor(model => model.PublicacionFormated, new { @class = "form-control", @type = "date" })
                             @Html.ValidationMessageFor(model => model.Publicacion, null, new { style = "color: red" })
                         </div>
                         <div class="col-md-6">
@@ -105,7 +105,7 @@
                 <btn onclick="SendForm(event);" class="btn btn-success">@ViewBag.Accion</btn>
             </div>
             <div class="col-md-2">
-                @Html.ActionLink(" Regresar", "GetAll", "TipoMedio", new { area = "" }, new { @class = "btn btn-danger bi bi-backspace" })
+                @Html.ActionLink(" Regresar", "GetAll", "MediaAdmin", new { area = "" }, new { @class = "btn btn-danger bi bi-backspace" })
             </div>
         </div>
     }

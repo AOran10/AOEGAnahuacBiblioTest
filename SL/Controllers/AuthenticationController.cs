@@ -44,7 +44,7 @@ namespace SL.Controllers
                 {
                     Subject = claims,
                     NotBefore = DateTime.Now,
-                    Expires = DateTime.Now.AddMinutes(2),
+                    Expires = DateTime.Now.AddMinutes(10),
                     SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(keyBytes), SecurityAlgorithms.HmacSha256Signature)
                 };
 

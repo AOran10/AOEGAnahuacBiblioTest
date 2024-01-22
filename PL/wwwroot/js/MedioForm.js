@@ -99,6 +99,7 @@ async function SendForm(event) {
         },
         "paginas": parseInt(form[2].value),
         "publicacion": fechafinal,
+        "publicacionFormated": "string",
         "cantidadEjemplares": parseInt(form[5].value),
         "cantidadEnPrestamo": 0,
         "imagen": imagenSend,
