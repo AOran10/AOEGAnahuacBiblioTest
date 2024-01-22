@@ -2,12 +2,14 @@
     renderPrestamos();
 });
 
-function renderPrestamos() {
-    $("#table_container").empty();
+function renderPrestamos(filtro) {
 
+    $("#table_Container").empty();
+
+    filtro = filtro != undefined ? filtro.value : 0;
     var settings = {
         type: 'GET',
-        url: 'http://localhost:5056/api/Prestamo/getall',
+        url: 'http://localhost:5056/api/Prestamo/getall/' + filtro,
         contentType: "application/json; charset=uft-8",
     };
     $.ajax(settings).done(function (result) {
@@ -121,7 +123,7 @@ function Delete(id) {
 
         var settings = {
             type: 'DELETE',
-            url: 'http://localhost:5056/api/Prestamo/delete/' + id,
+            url: 'http://localhost:5056/api/Prestamo/delete/' +id,
             contentType: "application/json; charset=uft-8",
         };
         $.ajax(settings).done(function (result) {

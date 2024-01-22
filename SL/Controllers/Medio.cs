@@ -7,13 +7,12 @@ namespace SL.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-
-    public class Autor : ControllerBase
+    public class Medio : ControllerBase
     {
         [HttpGet("getall")]
         public IActionResult GetAll()
         {
-            ML.Result result = BL.Autor.AutorGetAll();
+            ML.Result result = BL.Medio.MedioGetAll();
             if (result.Correct)
             {
                 return Ok(result);
@@ -24,10 +23,10 @@ namespace SL.Controllers
             }
         }
 
-        [HttpGet("getbyid/{idAutor}")]
-        public IActionResult GetById(int idAutor)
+        [HttpGet("getbyid/{idMedio}")]
+        public IActionResult GetById(int idMedio)
         {
-            ML.Result result = BL.Autor.AutorGetById(idAutor);
+            ML.Result result = BL.Medio.MedioGetById(idMedio);
             if (result.Correct)
             {
                 return Ok(result);
@@ -38,10 +37,10 @@ namespace SL.Controllers
             }
         }
 
-        [HttpDelete("delete/{idAutor}")]
-        public IActionResult Delete(int idAutor)
+        [HttpDelete("delete/{idMedio}")]
+        public IActionResult Delete(int idMedio)
         {
-            ML.Result result = BL.Autor.AutorDelete(idAutor);
+            ML.Result result = BL.Medio.MedioDelete(idMedio);
             if (result.Correct)
             {
                 return Ok(result);
@@ -55,9 +54,9 @@ namespace SL.Controllers
         [HttpPost("add")]
         [Authorize]
         [EnableCors(origins: "*", headers: "*", methods: "POST")]
-        public IActionResult Add([FromBody] ML.Autor autor)
+        public IActionResult Add([FromBody] ML.Medio medio)
         {
-            ML.Result result = BL.Autor.AutorAdd(autor);
+            ML.Result result = BL.Medio.MedioAdd(medio);
             if (result.Correct)
             {
                 return Ok(result);
@@ -69,9 +68,9 @@ namespace SL.Controllers
         }
         [HttpPut("update")]
         [Authorize]
-        public IActionResult Update([FromBody] ML.Autor autor)
+        public IActionResult Update([FromBody] ML.Medio medio)
         {
-            ML.Result result = BL.Autor.AutorUpdate(autor);
+            ML.Result result = BL.Medio.MedioUpdate(medio);
             if (result.Correct)
             {
                 return Ok(result);
@@ -81,7 +80,5 @@ namespace SL.Controllers
                 return BadRequest(result.Message);
             }
         }
-
-
     }
 }

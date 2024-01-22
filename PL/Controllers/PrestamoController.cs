@@ -14,9 +14,9 @@ namespace PL.Controllers
             return View();
         }
     [HttpGet]
-    public JsonResult GetAllPrestamo()
+    public JsonResult GetAllPrestamo(int filtro)
         {
-            ML.Result result = BL.Prestamo.PrestamoGetAll();
+            ML.Result result = BL.Prestamo.PrestamoGetAll(filtro);
 
 
             return Json(result);

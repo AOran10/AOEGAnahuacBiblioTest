@@ -43,7 +43,8 @@ namespace SL.Controllers
                 var tokenDescriptor = new SecurityTokenDescriptor
                 {
                     Subject = claims,
-                    Expires = DateTime.UtcNow.AddMinutes(2),
+                    NotBefore = DateTime.Now,
+                    Expires = DateTime.Now.AddMinutes(2),
                     SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(keyBytes), SecurityAlgorithms.HmacSha256Signature)
                 };
 

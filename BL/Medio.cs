@@ -13,6 +13,9 @@ namespace BL
         public static ML.Result MedioAdd(ML.Medio medio)
         {
             ML.Result result = new ML.Result();
+            medio.EstatusMedio = new ML.EstatusMedio();
+            medio.EstatusMedio.IdEstatusMedio = 1;
+
             try
             {
                 using (DL.AoeganahuacBiblioTestContext context = new DL.AoeganahuacBiblioTestContext())
@@ -27,9 +30,11 @@ namespace BL
                     SqlParameter publicacion = new SqlParameter("@Publicacion", medio.Publicacion);
                     SqlParameter cantidadEjemplares = new SqlParameter("@CantidadEjemplares", medio.CantidadEjemplares);
                     SqlParameter imagen = new SqlParameter("@Imagen", medio.Imagen);
+                    SqlParameter idEstatusMedio = new SqlParameter("@IdEstatusMedio", medio.EstatusMedio.IdEstatusMedio);
 
-                    string store = "MedioAdd @Titulo , @IdTipoMedio , @IdEditorial , @IdIdioma , @IdAutor , @IdGenero , @Paginas , @Publicacion , @CantidadEjemplares , @Imagen";
-                    var query = context.Database.ExecuteSqlRaw(store, titulo, idTipoMedio, idEditorial, idIdioma, idAutor, idGenero, paginas, publicacion, cantidadEjemplares, imagen);
+
+                    string store = "MedioAdd @Titulo , @IdTipoMedio , @IdEditorial , @IdIdioma , @IdAutor , @IdGenero , @Paginas , @Publicacion , @CantidadEjemplares , @Imagen, @IdEstatusMedio ";
+                    var query = context.Database.ExecuteSqlRaw(store, titulo, idTipoMedio, idEditorial, idIdioma, idAutor, idGenero, paginas, publicacion, cantidadEjemplares, imagen, idEstatusMedio);
 
                     if (query > 0)
                     {
@@ -54,11 +59,13 @@ namespace BL
         public static ML.Result MedioUpdate(ML.Medio medio)
         {
             ML.Result result = new ML.Result();
+            medio.EstatusMedio = new ML.EstatusMedio();
+            medio.EstatusMedio.IdEstatusMedio = 1;
             try
             {
                 using (DL.AoeganahuacBiblioTestContext context = new DL.AoeganahuacBiblioTestContext())
                 {
-                    SqlParameter idMedio = new SqlParameter("@IdMedio", medio.Titulo);
+                    SqlParameter idMedio = new SqlParameter("@IdMedio", medio.IdMedio);
                     SqlParameter titulo = new SqlParameter("@Titulo", medio.Titulo);
                     SqlParameter idTipoMedio = new SqlParameter("@IdTipoMedio", medio.TipoMedio.IdTipoMedio);
                     SqlParameter idEditorial = new SqlParameter("@IdEditorial", medio.Editorial.IdEditorial);
@@ -70,9 +77,9 @@ namespace BL
                     SqlParameter cantidadEjemplares = new SqlParameter("@CantidadEjemplares", medio.CantidadEjemplares);
                     SqlParameter cantidadEnPrestamo = new SqlParameter("@CantidadEnPrestamo", medio.CantidadEnPrestamo);
                     SqlParameter imagen = new SqlParameter("@Imagen", medio.Imagen);
-
-                    string store = "MedioUpdate @IdMedio , @Titulo , @IdTipoMedio , @IdEditorial , @IdIdioma , @IdAutor , @IdGenero , @Paginas , @Publicacion , @CantidadEjemplares , @CantidadEnPrestamo , @Imagen";
-                    var query = context.Database.ExecuteSqlRaw(store, idMedio, titulo, idTipoMedio, idEditorial, idIdioma, idAutor, idGenero, paginas, publicacion, cantidadEjemplares, cantidadEnPrestamo, imagen);
+                    SqlParameter idEstatusMedio = new SqlParameter("@IdEstatusMedio", medio.EstatusMedio.IdEstatusMedio);
+                    string store = "MedioUpdate @IdMedio , @Titulo , @IdTipoMedio , @IdEditorial , @IdIdioma , @IdAutor , @IdGenero , @Paginas , @Publicacion , @CantidadEjemplares , @CantidadEnPrestamo , @Imagen, @IdEstatusMedio";
+                    var query = context.Database.ExecuteSqlRaw(store, idMedio, titulo, idTipoMedio, idEditorial, idIdioma, idAutor, idGenero, paginas, publicacion, cantidadEjemplares, cantidadEnPrestamo, imagen , idEstatusMedio);
 
 
                     if (query > 0)

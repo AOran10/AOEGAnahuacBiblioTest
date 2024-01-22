@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.CodeAnalysis.Elfie.Serialization;
 using ML;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -12,10 +13,10 @@ namespace PL.Controllers
     public class PrestamosController : ControllerBase
     {
         // GET: api/<PrestamosController>
-        [HttpGet("GetAll")]
-        public IActionResult GetAll()
-        {
-            ML.Result result = BL.Prestamo.PrestamoGetAll();
+		[HttpGet("GetAll/{filtro}")]
+		public IActionResult GetAll(int filtro)
+		{
+            ML.Result result = BL.Prestamo.PrestamoGetAll(filtro);
 
             ML.Prestamo prestamo = new ML.Prestamo();
             prestamo.Prestamos = result.Objects;

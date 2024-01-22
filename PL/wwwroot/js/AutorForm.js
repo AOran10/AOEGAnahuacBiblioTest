@@ -51,12 +51,13 @@ function getBase64(file) {
     return new Promise((resolve, reject) => {
         const reader = new FileReader();
         reader.readAsDataURL(file);
-        reader.onload = () => resolve(reader.result);
+        reader.onload = () => resolve(reader.result);   
         reader.onerror = error => reject(error);
     });
 }
 async function SendForm(event) {
     event.preventDefault();
+
     var token = localStorage.getItem('token');
 
     var form = document.getElementById("form");
@@ -103,7 +104,6 @@ async function SendForm(event) {
     $.ajax({
         type: verboSend,
         url: urlSend,
-        //Authorization: token,
         headers: {
             accept: 'application/json',
             'content-type': 'application/json',

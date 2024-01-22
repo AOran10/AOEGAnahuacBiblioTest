@@ -29,6 +29,7 @@ namespace ML
         [Required]
         [DisplayName("Imagen:")]
         public byte[] Imagen { get; set; }
+        public ML.EstatusMedio EstatusMedio { get; set; }   
         public List<object> Medios { get; set; }
     }
 }

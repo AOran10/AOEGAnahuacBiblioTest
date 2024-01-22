@@ -92,12 +92,10 @@ function GetById(id) {
             contentType: "application/json; charset=uft-8",
             success: function (result) {
                 alert("Se ha autentificado, tienes 2 minutos para modificar el registro");
-                //var ready = localStorage.getItem('jwtToken');
                 var tokenCreado = result.token;
                 localStorage.setItem('token', tokenCreado) 
 
                 window.location.href = `/Autor/Form?idAutor=${id}`;
-                //window.location.href = `/Autor/Form?idAutor=${id}&token=${tokenCreado}`;
 
                 
             },
@@ -129,26 +127,3 @@ function Delete(id) {
     };
 };
 
-
-
-function nuBank() {
-    var cantidadDinero = prompt("Digita la cantidad del dinero");
-    var cantidadDineroFijo = cantidadDinero;
-
-    var dias = 365;
-    var taza = 0.16;
-
-
-    var tazageneral = parseFloat(cantidadDinero - cantidadDineroFijo).toFixed(2);
-    var tazadiaria = parseFloat(tazageneral).toFixed(3);;
-
-    for (i = 1; i <= dias; i++) {
-        gananciaAlDia = cantidadDinero * tazadiaria;
-        cantidadDinero = cantidadDinero + gananciaAlDia
-    }
-
-    var total = parseFloat(cantidadDinero).toFixed(2);
-    var gananciaTotal = parseFloat(cantidadDinero - cantidadDineroFijo).toFixed(2);
-
-    alert("Si empiezas con " + cantidadDineroFijo + " terminas con " + total + " pesos en 1 año con ganancia de " + gananciaTotal);
-}

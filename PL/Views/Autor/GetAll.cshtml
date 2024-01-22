@@ -25,7 +25,8 @@
     </div>
     <div class="row">
         <div class="col-md-1 offset-md-11">
-            @Html.ActionLink(" +", "Form", "Autor", null, new { @class = "btn btn-success bi-person-fill-add" })
+            @* @Html.ActionLink(" +", "Form", "Autor", null, new { @class = "btn btn-success bi-person-fill-add", @onclick="GetById(0)"}) *@
+            <btn class = "btn btn-success bi-person-fill-add", onclick="GetById(0)">+ </btn>
         </div>
     </div>
     <center>

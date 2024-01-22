@@ -127,10 +127,10 @@ namespace BL
             return result;
         }
 
-        public static ML.Result PrestamoGetAll()
+        public static ML.Result PrestamoGetAll(int filtro)
         {
             ML.Result result = new ML.Result();
-
+			
             try
             {
                 using(DL.AoeganahuacBiblioTestContext context= new DL.AoeganahuacBiblioTestContext())
@@ -139,7 +139,9 @@ namespace BL
                                  join usuarioLINQ in context.AspNetUsers on prestamosLINQ.IdUsuario equals usuarioLINQ.Id
                                  join medioLINQ in context.Medios on prestamosLINQ.IdMedio equals medioLINQ.IdMedio
                                  join estatusLINQ in context.EstatusPrestamos on prestamosLINQ.IdEstatus equals estatusLINQ.IdEstatusPrestamo
-                                 select new
+                                 where estatusLINQ.IdEstatusPrestamo == filtro
+
+								 select new
                                  {
                                      IdPrestamo = prestamosLINQ.IdPrestamo,
                                      IdUsuario = prestamosLINQ.IdUsuario,

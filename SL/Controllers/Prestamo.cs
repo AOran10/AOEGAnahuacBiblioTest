@@ -8,10 +8,10 @@ namespace SL.Controllers
     [ApiController]
     public class Prestamo : ControllerBase
     {
-        [HttpGet("getall")]
-        public IActionResult GetAll()
+        [HttpGet("getall/{filtro}")]
+        public IActionResult GetAll(int filtro)
         {
-            ML.Result result = BL.Prestamo.PrestamoGetAll();
+            ML.Result result = BL.Prestamo.PrestamoGetAll(filtro);
             if (result.Correct)
             {
                 return Ok(result);

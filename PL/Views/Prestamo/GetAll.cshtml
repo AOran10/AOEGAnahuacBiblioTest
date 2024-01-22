@@ -24,8 +24,19 @@
 </div>
 <br />
 <div class="row">
+	<div class="col-md-12">
+		<label for="filtro">Filtra por estatus</label>
+		<select name="filtro" id="filtro" onchange="renderPrestamos(filtro)">
+			<option value="1">Activos</option>
+			<option value="2">Inactivos</option>
+			<option value="3">Demora</option>
+		</select>
+	</div>
+</div>
+<div class="row">
 	<div class="col-md-1 offset-md-11">
-		@Html.ActionLink(" +", "Form", "Prestamo", null, new { @class = "btn btn-success bi bi-book" })
+		@* @Html.ActionLink(" +", "Form", "Prestamo", null, new { @class = "btn btn-success bi bi-book" , @onclick="GetById(0)"}) *@
+		<btn class="btn btn-success bi-person-fill-add" , onclick="GetById(0)">+ </btn>
 	</div>
 </div>
 <div id="table_Container">
